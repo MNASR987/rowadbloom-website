@@ -113,7 +113,7 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
       </div>
       <div class="reveal">{tourUrl
         ? <VideoEmbed url={tourUrl} title="Virtual tour" />
-        : <PhotoPlaceholder crest caption="Al Murabba, Riyadh — we look forward to welcoming you." ratio="16 / 10" />}</div>
+        : <PhotoPlaceholder photo="campus.jpg" alt="Rowad Bloom International Schools building, Riyadh" crest caption="Al Aziziyah, Riyadh — we look forward to welcoming you." ratio="16 / 10" />}</div>
     </div>
   </section>
 
