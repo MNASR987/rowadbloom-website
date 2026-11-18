@@ -1,0 +1,78 @@
+# ADMISSIONS PAGE
+seo:
+  title: "Admissions"
+  description: "Admissions at Rowad Bloom International Schools, Riyadh: who we admit, the admissions process, required documents, FAQ, enquiries and school tours."
+
+hero:
+  title: "Admissions"
+  text: "We look forward to welcoming your family. Here is everything you need to begin."
+
+whoWeAdmit:
+  title: "Who We Admit"
+  groups:
+    - { title: "Kindergarten", text: "KG1 to KG3, boys and girls" }
+    - { title: "Girls School and Boys School", text: "Grade 1 to Grade 12" }
+  note: "Families of all nationalities are welcome. Age requirements for each grade follow Ministry of Education regulations — our admissions team will confirm the right grade for your child."
+
+process:
+  title: "The Admissions Process"
+  note: "Six simple steps from your first question to your child's first day."
+  steps:
+    - { title: "Enquire", text: "Send us an enquiry online, by WhatsApp or by phone." }
+    - { title: "Visit", text: "Book a tour of the school and meet our admissions team." }
+    - { title: "Apply", text: "Complete the application and submit the required documents." }
+    - { title: "Assessment", text: "Your child meets our team for a friendly placement assessment, so we can understand their level and support them from day one." }
+    - { title: "Offer", text: "We contact you with the admission decision and the next steps." }
+    - { title: "Registration", text: "Confirm the place by completing registration and paying the fees. We will then welcome your child and share everything you need for the first day." }
+
+documents:
+  title: "Required Documents"
+  note: "Please bring copies of the following. Our admissions team will tell you if anything else is needed for your child's grade."
+  items:
+    - "Student's birth certificate"
+    - "Student's passport and Iqama, or National ID (for Saudi students)"
+    - "Parent's or guardian's ID or Iqama"
+    - "Latest school report and transfer certificate (from Grade 1 upwards)"
+    - "Vaccination record"
+    - "Recent passport-size photographs"
+
+# Tuition fees: add rows to show the fees table, e.g.
+#   rows:
+#     - { stage: "KG1", fee: "00,000" }
+fees:
+  title: "Tuition Fees 2026–2027"
+  intro: "Annual tuition fees in Saudi riyals (SAR), excluding VAT."
+  columnStage: "Grade"
+  columnFee: "Annual tuition (SAR)"
+  rows: []
+  notes: []
+
+offers:
+  title: "Offers & Announcements"
+  intro: "Current campaigns and announcements from our admissions team."
+
+faq:
+  title: "Frequently Asked Questions"
+  items:
+    - q: "Which grades do you offer?"
+      a: "Kindergarten (KG1 to KG3) and Grades 1 to 12, for boys and girls."
+    - q: "Which curriculum do you follow?"
+      a: "American and British programmes, alongside Arabic, Holy Quran and Islamic Studies, and Social Studies."
+    - q: "Do you have a British section?"
+      a: "Yes. Our British section serves middle and secondary students, boys and girls, and leads to international examinations."
+    - q: "Can external students sit examinations at your centre?"
+      a: "Yes. Rowad Bloom is an approved centre for Pearson Edexcel, Cambridge and OxfordAQA examinations, open to our own students and to external candidates. Please contact the school for entries and dates."
+    - q: "Do you teach Arabic and Islamic Studies?"
+      a: "Yes. Arabic, Holy Quran and Islamic Studies, and Social Studies are taught as identity subjects."
+    - q: "What are the tuition fees?"
+      a: "Please contact our admissions team for the current tuition fees and payment schedule."
+    - q: "Who runs the school?"
+      a: "Rowad Bloom International Schools is one of the schools of El-Shrouk Pioneer Academy."
+    - q: "Do you provide school transport?"
+      a: "Please contact our admissions team to ask about school transport for your area."
+    - q: "When can my child start?"
+      a: "Contact our admissions team to check availability in your child's grade — we will be happy to help with joining during the year where places allow."
+
+enquire:
+  title: "Enquire or Book a Tour"
+  text: "Share a few details and our admissions team will contact you."

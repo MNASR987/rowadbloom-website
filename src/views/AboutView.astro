@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Rich from '../components/Rich.astro';
+import { rich } from '../lib/text';
+import Icon from '../components/Icon.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { Image } from 'astro:assets';
+import { brandImage } from '../lib/images';
+import { getPage, settings, type Lang } from '../lib/content';
+import { real } from '../lib/text';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = getPage('about', lang);
+const ui = getPage('ui', lang);
+const people = p.leadership.people.filter((x: any) => real(x.name));
+const showLeadership = people.length > 1;
+---
+<BaseLayout title={p.seo.title} description={p.seo.description} lang={lang}>
+  <PageHero title={p.hero.title} text={p.hero.text} />
+
+  {p.superintendent && (
+    <section class="section" id="superintendent" aria-labelledby="superintendent-h">
+      <div class="container split split--wide-text">
+        <div class="reveal">
+          <p class="eyebrow">Welcome</p>
+          <h2 id="superintendent-h">{p.superintendent.title}</h2>
+          <div class="welcome-body"><Rich paras text={p.superintendent.body} /></div>
+          <p class="sign"><strong>{p.superintendent.name}</strong><span>{p.superintendent.role}</span>{p.superintendent.email && <a href={`mailto:${p.superintendent.email}`}>{p.superintendent.email}</a>}</p>
+        </div>
+        <div class="reveal portrait"><PhotoPlaceholder ratio="4 / 5" position="center 20%" photo={p.superintendent.photo} alt={`${p.superintendent.name}, ${p.superintendent.role}`} widths={[400, 640, 900]} crest /></div>
+      </div>
+    </section>
+  )}
+
+  <section class="section word2" id="welcome" aria-labelledby="welcome-h">
+    <div class="container split split--wide-text flip">
+      <div class="reveal">
+        <p class="eyebrow">From the Principal</p>
+        <h2 id="welcome-h">{p.welcome.title}</h2>
+        <div class="welcome-body"><Rich paras text={p.welcome.body} /></div>
+        <p class="sign"><Rich as="strong" text={p.welcome.name} /><span>{p.welcome.role}</span></p>
+      </div>
+      <div class="reveal"><PhotoPlaceholder ratio="4 / 5" photo="principal.jpg" alt={p.welcome.name} crest caption="“Our door is open.”" /></div>
+    </div>
+  </section>
+
+
+  <section class="section section--alt" id="vision" aria-labelledby="vision-h">
+    <div class="container">
+      <h2 id="vision-h" class="visually-hidden">Vision, mission and values</h2>
+      {(real(p.vision.text) || real(p.mission.text)) && (
+      <div class="grid grid--2">
+        {real(p.vision.text) && <article class="card statement reveal"><p class="eyebrow">{p.vision.title}</p><p class="big" set:html={rich(p.vision.text)} /></article>}
+        {real(p.mission.text) && <article class="card statement reveal"><p class="eyebrow">{p.mission.title}</p><p class="big" set:html={rich(p.mission.text)} /></article>}
+      </div>
+      )}
+      <h3 class="values-title">{p.values.title}</h3>
+      <div class="grid grid--3">
+        {p.values.items.map((v: any) => (
+          <article class="card card--gold-top reveal"><h4><Rich text={v.title} /></h4><Rich as="p" text={v.text} /></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {p.video.url && <section class="section" id="video" aria-labelledby="video-h">
+    <div class="narrow">
+      <h2 id="video-h" class="visually-hidden">{p.video.title}</h2>
+      <VideoEmbed url={p.video.url} title={p.video.title} />
+    </div>
+  </section>}
+
+  {showLeadership && <section class="section section--alt" id="leadership" aria-labelledby="lead-h">
+    <div class="container">
+      <div class="section-head"><p class="eyebrow">Our team</p><h2 id="lead-h">{p.leadership.title}</h2>{real(p.leadership.intro) && <Rich as="p" text={p.leadership.intro} />}</div>
+      <div class="people">
+        {people.map((person: any) => (
+          <article class="person reveal">
+            <PhotoPlaceholder ratio="1 / 1" position="center 18%" photo={person.photo} alt={person.name} icon="user" widths={[400, 600]} />
+            <h3><Rich text={person.name} /></h3>
+            <p><Rich text={person.role} /></p>
+            {person.email && <p class="email"><a href={`mailto:${person.email}`}>{person.email}</a></p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>}
+
+  <section class="section" id="accreditation" aria-labelledby="acc-h">
+    <div class="container">
+      <div class="section-head"><p class="eyebrow">Trust</p><h2 id="acc-h">{p.partnerships.title}</h2></div>
+      <div class="grid grid--3">
+        {p.partnerships.items.map((item: any) => (
+          <article class="card reveal">{brandImage(item.logo)
+            ? <Image src={brandImage(item.logo)!} alt={`${item.title} logo`} height={96} densities={[1, 2]} class="partner-logo" />
+            : <span class="icon-badge"><Icon name="shield" /></span>}<h3>{item.title}</h3><Rich as="p" text={item.text} /></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--navy" id="licensing" aria-labelledby="lic-h">
+    <div class="container split">
+      <div>
+        <p class="eyebrow">Official</p>
+        <h2 id="lic-h">{p.licensing.title}</h2>
+        <p class="lic-text">{p.licensing.text}</p>
+      </div>
+      <dl class="lic">
+        <div><dt>{ui.footer.licence}</dt><dd dir="ltr">{settings.licence.ministryLicenceNo}</dd></div>
+        <div><dt>{ui.footer.unified}</dt><dd dir="ltr">{settings.licence.unifiedNo}</dd></div>
+        <div><dt>Girls</dt><dd>KG1 – Grade 12</dd></div>
+        <div><dt>Boys</dt><dd>KG1 – Grade 6</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <CtaBand title="Come and see Rowad Bloom for yourself" lang={lang} />
+</BaseLayout>
+<style>
+  .word2 { border-block-start: 1px solid var(--c-border); }
+  @media (min-width: 900px) { .flip > :first-child { order: 2; } .flip.split--wide-text { grid-template-columns: 1fr 1.2fr; } }
+  .portrait :global(img) { box-shadow: 0 30px 60px -35px rgba(6,24,51,.55); }
+  .welcome-body { margin-block: 1.5rem; font-size: 1.1rem; }
+  .sign { display: grid; gap: .2rem; border-inline-start: 3px solid var(--c-accent); padding-inline-start: 1rem; }
+  .sign span { color: var(--c-text-muted); font-size: .95rem; }
+  .statement :global(.big) { font: 400 clamp(1.25rem, 2vw, 1.5rem)/1.5 var(--font-heading); color: var(--c-primary); }
+  .partner-logo { block-size: 96px; inline-size: auto; margin-block-end: 1.25rem; }
+  .values-title { margin-block: 3.5rem 1.5rem; }
+  .card h4 { margin-block-end: .5rem; }
+  .people { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 17rem)); }
+  .person h3 { margin-block: 1.25rem .25rem; font-size: 1.3rem; }
+  .person p { color: var(--c-text-muted); }
+  .person .email { margin-block-start: .2rem; }
+  .sign a, .person .email a { font-size: .95rem; color: var(--c-accent-text); text-decoration: none; }
+  .sign a:hover, .person .email a:hover { text-decoration: underline; }
+  .lic-text { margin-block-start: 1rem; font-size: 1.15rem; }
+  .lic { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(57,160,220,.35); border-radius: var(--radius); overflow: hidden; }
+  .lic div { background: var(--c-primary); padding: 1.5rem; }
+  .lic dt { font-size: .85rem; color: #C9D2E0; }
+  .lic dd { margin: .35rem 0 0; font: 650 1.25rem/1.2 var(--font-body); color: var(--c-accent); }
+</style>

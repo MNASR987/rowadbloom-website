@@ -1,0 +1,72 @@
+# LEARNING PAGE
+seo:
+  title: "Learning"
+  description: "Learning at Rowad Bloom International Schools, Riyadh: Kindergarten, Primary, Middle and High School, American and British programmes, identity subjects, languages and our British examinations centre."
+
+hero:
+  title: "Learning at Rowad Bloom"
+  text: "A connected journey from Kindergarten to Grade 12: American and British programmes, with strong Arabic, Islamic and national foundations."
+
+journey:
+  title: "The Learner Journey"
+  intro: "Four phases, one continuous journey — each building on the last."
+  phases:
+    - name: "Kindergarten"
+      grades: "KG1 – KG3"
+      who: "Boys and girls"
+      text: "Children learn through play, stories, songs and hands-on discovery. They build early reading, writing and number skills in English and Arabic, learn short surahs and Islamic manners, and grow in confidence, so that they start Grade 1 curious and ready to learn."
+    - name: "Primary"
+      grades: "Grades 1 – 6"
+      who: "Boys and girls"
+      text: "Strong foundations in English language arts, mathematics, science and social studies, alongside Arabic, Holy Quran and Islamic Studies. Students learn to read widely, write clearly and think for themselves."
+    - name: "Middle School"
+      grades: "Grades 7 – 9"
+      who: "Girls School · Boys School"
+      text: "Students take more ownership of their learning. Subjects deepen, and students practise research, presentation and independent study. Families can choose between the American programme and the British section."
+    - name: "High School"
+      grades: "Grades 10 – 12"
+      who: "Girls School · Boys School"
+      text: "Rigorous study across core subjects prepares students for university and their future careers, with guidance on subject choices and next steps. British-section students sit international examinations at our own approved centre."
+
+curriculum:
+  title: "Our Curriculum"
+  text: |
+    Rowad Bloom International Schools offers American and British programmes, licensed by the Ministry of Education. The core subjects are English language arts, mathematics and science, and every student also studies the identity subjects: Arabic, Holy Quran and Islamic Studies, and Social Studies.
+
+    Our British section serves middle and secondary students, for boys and girls, and leads to international examinations.
+
+    Lessons are active and practical. Students question, discuss, investigate and apply what they learn, because we believe critical thinking matters more than memorising information.
+
+identity:
+  title: "Identity Subjects"
+  intro: "Every Rowad Bloom learner grows with a strong sense of faith, language and nation."
+  items:
+    - title: "Arabic"
+      text: "Students build strong reading, writing, speaking and listening skills in Arabic, and grow to love the language of the Quran and of their heritage."
+    - title: "Holy Quran & Islamic Studies"
+      text: "Students learn to recite and memorise the Holy Quran and understand its meanings, guided by Islamic principles of respect, honesty and integrity."
+    - title: "Social Studies"
+      text: "Students learn about the history, geography and culture of Saudi Arabia, and what it means to be a responsible citizen in a changing world."
+
+languages:
+  title: "Languages"
+  text: |
+    English is the language of instruction for the international programme subjects, so students become confident readers, writers and speakers of English.
+
+    Arabic is taught as a core subject to every student, and Holy Quran and Islamic Studies are taught in Arabic. Students also learn French or German as an additional language.
+
+stem:
+  title: "British Section & Examinations Centre"
+  text: "Rowad Bloom has a British section for middle and secondary students, boys and girls, and is an approved centre for international examinations. The centre is open to our own students and to external candidates."
+  points:
+    - "Pearson Edexcel"
+    - "Cambridge"
+    - "OxfordAQA"
+  more: "For examination entries, dates and fees, please contact the school."
+
+assessment:
+  title: "Our Approach to Assessment"
+  text: |
+    Teachers check understanding every day in class, through questions, classwork and feedback, so that no student is left behind.
+
+    Each semester has two quiz cycles, followed by a revision week and semester exams. Parents meet teachers at two parent–teacher conferences each year, and the dates for every assessment are in the academic calendar.

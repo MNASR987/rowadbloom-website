@@ -1,0 +1,74 @@
+# ABOUT PAGE
+seo:
+  title: "About Us"
+  description: "About Rowad Bloom International Schools, Riyadh, one of the schools of El-Shrouk Pioneer Academy: welcome, leadership, programmes, the British examinations centre and licensing."
+
+hero:
+  title: "About Rowad Bloom"
+  text: "International schools in Riyadh for boys and girls, from Kindergarten to Grade 12."
+
+welcome:
+  title: "Welcome to Rowad Bloom"
+  body: |
+    Welcome to Rowad Bloom International Schools.
+
+    We are a community of schools in Riyadh: a large Kindergarten section, a Girls School and a Boys School, taking learners from KG1 to Grade 12. Our students follow American and British programmes, and our school is an approved centre for Pearson Edexcel, Cambridge and OxfordAQA examinations.
+
+    We want our students to be at ease in an international setting and proud of who they are. That is why Arabic, the Holy Quran and Islamic Studies sit at the centre of every week, alongside English, mathematics and science.
+
+    None of this works without parents. Our door is open, and we would always rather hear a concern early than late.
+
+    We look forward to meeting you when you visit our campus.
+  name: "Ms. Bushra Al-Shahrani"
+  role: "Principal"
+
+# Optional YouTube video on the About page (e.g. a message from the Principal).
+video:
+  title: "Welcome to Rowad Bloom"
+  url: ""
+
+vision:
+  title: "Vision"
+  text: "[TO CONFIRM: The school's vision statement]"
+mission:
+  title: "Mission"
+  text: "[TO CONFIRM: The school's mission statement]"
+values:
+  title: "Our Beliefs"
+  items:
+    - title: "Character rooted in faith"
+      text: "Education shapes not only minds but character, guided by Islamic principles, respect and integrity."
+    - title: "Saudi identity, global outlook"
+      text: "Students grow with pride in their heritage and culture, alongside the confidence to engage with the world."
+    - title: "Every student's potential"
+      text: "Learning should be engaging and personal, helping each student discover their strengths and voice."
+    - title: "Critical thinking"
+      text: "Students are guided to question, analyse and reason, not just absorb information."
+    - title: "Technology & innovation"
+      text: "Digital literacy and creative problem-solving prepare students for a changing world."
+    - title: "Community & partnership"
+      text: "Families, educators and society share the responsibility of shaping young minds."
+
+leadership:
+  title: "Leadership"
+  intro: ""
+  # Add one entry per leader. Photos are optional: put the file in the
+  # "brand" folder and write its name, e.g. photo: "principal.jpg"
+  people:
+    - { name: "Ms. Bushra Al-Shahrani", role: "Principal", photo: "" }
+    - { name: "Ms. Mona Fawzi", role: "Academic Manager", photo: "" }
+
+partnerships:
+  title: "Our Group & Examination Boards"
+  items:
+    - title: "El-Shrouk Pioneer Academy"
+      text: "Rowad Bloom International Schools is one of the schools of El-Shrouk Pioneer Academy."
+      logo: "epa-logo.png"   # file in the "brand" folder
+    - title: "British examinations centre"
+      text: "An approved centre for Pearson Edexcel, Cambridge and OxfordAQA examinations, open to our own students and to external candidates."
+    - title: "Ministry of Education"
+      text: "Licensed by the Ministry of Education of the Kingdom of Saudi Arabia as a private school with international programmes."
+
+licensing:
+  title: "Licensing"
+  text: "Rowad Bloom International Schools is licensed by the Ministry of Education for Kindergarten, elementary, intermediate and secondary education, for boys and girls."

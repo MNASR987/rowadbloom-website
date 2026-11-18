@@ -1,0 +1,32 @@
+---
+// Shows a photo from the "brand" folder; until one exists, shows an elegant
+// navy & gold panel (with the crest or an icon and a short phrase).
+import { Image } from 'astro:assets';
+import { brandImage, logo } from '../lib/images';
+import Pattern from './Pattern.astro';
+import Icon from './Icon.astro';
+interface Props { position?: string; photo?: string; alt?: string; ratio?: string; widths?: number[]; icon?: string; caption?: string; crest?: boolean; label?: string }
+const { position = 'center', photo, alt = '', ratio = '4 / 3', widths = [480, 800, 1200], icon, caption, crest = false } = Astro.props;
+const img = brandImage(photo);
+---
+{img ? (
+  <Image src={img} alt={alt} widths={widths} sizes="(min-width: 900px) 50vw, 100vw" class="photo" style={`aspect-ratio:${ratio};object-position:${position}`} />
+) : (
+  <div class="ph" style={`aspect-ratio:${ratio}`} aria-hidden="true">
+    <Pattern opacity={0.16} />
+    <div class="inner">
+      {crest && logo ? <Image src={logo} alt="" height={160} densities={[1, 2]} class="crest" />
+        : icon ? <span class="ic"><Icon name={icon} size={44} /></span> : null}
+      {caption && <p>{caption}</p>}
+    </div>
+  </div>
+)}
+<style>
+  .photo { inline-size: 100%; object-fit: cover; border-radius: var(--radius); }
+  .ph { position: relative; overflow: hidden; display: grid; place-items: center; border-radius: var(--radius); background: radial-gradient(120% 100% at 30% 0%, #17396B, var(--c-primary) 50%, var(--c-primary-deep)); color: #E9EDF4; text-align: center; padding: 1.5rem; box-shadow: 0 30px 60px -40px rgba(6,24,51,.6); }
+  .ph::after { content: ''; position: absolute; inset: 14px; border: 1px solid rgba(214,176,106,.35); border-radius: calc(var(--radius) - 6px); pointer-events: none; }
+  .inner { position: relative; display: grid; justify-items: center; gap: 1.25rem; max-inline-size: 22rem; }
+  .crest { block-size: clamp(110px, 18vw, 160px); inline-size: auto; filter: drop-shadow(0 12px 24px rgba(0,0,0,.35)); }
+  .ic { display: grid; place-items: center; inline-size: 6rem; block-size: 6rem; border-radius: 50%; border: 1px solid rgba(214,176,106,.6); color: var(--c-accent); background: rgba(6,24,51,.35); }
+  .inner p { font: 400 clamp(1.15rem, 2vw, 1.45rem)/1.4 var(--font-heading); font-style: italic; color: #fff; }
+</style>

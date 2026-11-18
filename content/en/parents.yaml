@@ -1,0 +1,42 @@
+# PARENTS PAGE
+# The academic calendar itself is in content/en/calendar.yaml
+seo:
+  title: "Parents"
+  description: "Information for parents at Rowad Bloom International Schools, Riyadh: academic calendar 2026–2027, school uniform, key policies and the parent portal."
+
+hero:
+  title: "Parents"
+  text: "Everything you need for the school year, in one place."
+
+portal:
+  title: "Parent Portal"
+  text: "Log in to follow your child's learning, reports and school announcements."
+  button: "Go to the Parent Portal"
+  missing: "[TO CONFIRM: Parent portal link]"
+
+# School uniform: add the wording below to show the uniform section.
+uniform:
+  title: "School Uniform"
+  text: "[TO CONFIRM: School uniform details]"
+
+partnership:
+  title: "Working together"
+  items:
+    - title: "Parent–teacher conferences"
+      text: "Two conferences each year to talk with teachers about your child's progress."
+    - title: "Quizzes and exams"
+      text: "Two quiz cycles in each semester, then a revision week and semester exams. Dates are in the calendar above."
+    - title: "Speak to us early"
+      text: "Our door is open. If something is worrying you or your child, contact the class teacher or the school office — we would always rather hear a concern early than late."
+
+policies:
+  title: "Key Policies"
+  intro: "Copies of our school policies are available from the school office on request."
+  # pdf: put the file in "public/files" and write its name.
+  items:
+    - { title: "Admissions Policy", pdf: "" }
+    - { title: "Child Protection & Safeguarding Policy", pdf: "" }
+    - { title: "Behaviour & Anti-Bullying Policy", pdf: "" }
+    - { title: "Assessment Policy", pdf: "" }
+    - { title: "Attendance & Punctuality Policy", pdf: "" }
+    - { title: "Health & Medication Policy", pdf: "" }

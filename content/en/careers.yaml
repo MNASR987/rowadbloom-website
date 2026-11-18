@@ -1,0 +1,30 @@
+# CAREERS PAGE
+seo:
+  title: "Careers"
+  description: "Careers at Rowad Bloom International Schools, Riyadh: join our team of educators."
+
+hero:
+  title: "Careers at Rowad Bloom"
+  text: "Join a team shaping confident, capable learners in Riyadh."
+
+why:
+  title: "Why work with us"
+  text: "At Rowad Bloom you will teach in American and British programmes, from Kindergarten to Grade 12. We value teachers who care about every child, keep learning themselves and work as a team. As one of the schools of El-Shrouk Pioneer Academy, we offer a supportive community and opportunities to grow."
+
+vacancies:
+  title: "Current Vacancies"
+  empty: "There are no advertised vacancies at the moment. You are welcome to send your CV for future opportunities."
+  # Add a vacancy like this (remove the # at the start of each line):
+  # - title: "Grade 3 Homeroom Teacher"
+  #   type: "Full time · Girls' section"
+  #   text: "Short description."
+  items: []
+
+apply:
+  title: "How to apply"
+  text: "Send your CV and a covering letter by email, stating the position you are applying for."
+  missing: "[TO CONFIRM: Recruitment email address]"
+
+safer:
+  title: "Safer recruitment"
+  text: "Rowad Bloom International Schools is committed to safeguarding children. All appointments are subject to verification of identity, qualifications and references, and to the checks required by Saudi regulations."

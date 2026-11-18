@@ -1,0 +1,36 @@
+{
+  "_readme": "THEME FILE — colours, fonts and logo for the whole website. Change a colour code here and every page updates.",
+  "logo": {
+    "_readme": "The crest in brand/logo.png is used automatically. The words below are shown next to it in the header and footer (and on their own if no logo file exists).",
+    "wordmarkTop": "Rowad Bloom",
+    "wordmarkBottom": "International Schools",
+    "monogram": "B",
+    "showWordsNextToLogo": true
+  },
+  "colors": {
+    "primary": "#22305C",
+    "primaryDeep": "#18234A",
+    "accent": "#3AA0DC",
+    "accentText": "#1B6FA6",
+    "accentSoft": "#E4F1FA",
+    "background": "#FFFFFF",
+    "backgroundAlt": "#F4F8FC",
+    "text": "#1B2333",
+    "textMuted": "#4E5A6B",
+    "border": "#D9E5F1",
+    "placeholder": "#FFF4CC",
+    "whatsapp": "#17703D",
+    "accentHover": "#6BB9E8",
+    "_readme": "Navy and blue sampled from the school logo (brand/logo.png)."
+  },
+  "fonts": {
+    "_readme": "Heading = elegant serif; Body = clean sans-serif. The Arabic fonts are already loaded and used automatically for Arabic text.",
+    "heading": "Playfair Display Variable",
+    "body": "Inter Variable",
+    "arabicHeading": "Noto Naskh Arabic Variable",
+    "arabicBody": "IBM Plex Sans Arabic"
+  },
+  "shape": {
+    "radius": "14px"
+  }
+}

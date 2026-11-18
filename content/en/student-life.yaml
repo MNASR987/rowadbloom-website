@@ -1,0 +1,54 @@
+# STUDENT LIFE PAGE
+seo:
+  title: "Student Life"
+  description: "Student life at Rowad Bloom International Schools, Riyadh: wellbeing and pastoral care, activities and clubs, and health and safety with our school clinic."
+
+hero:
+  title: "Student Life"
+  text: "Happy, safe and curious learners — inside and beyond the classroom."
+
+# Optional YouTube video on the Student Life page.
+video:
+  title: "Student life at Rowad Bloom"
+  url: ""
+
+sections:
+  - id: wellbeing
+    title: "Wellbeing"
+    text: |
+      Children learn best when they feel safe, known and valued. Our teachers know each child well — their strengths, their worries and what helps them grow.
+
+      Each class has a homeroom teacher who is the first point of contact for students and parents. Our expectations are clear and rooted in Islamic values: respect, kindness, honesty and responsibility. We do not accept bullying in any form, and every concern is listened to and followed up.
+
+      We work closely with families. If something is worrying your child, please tell us early — together we can help.
+    list:
+      - "A homeroom teacher who knows every child"
+      - "Clear behaviour expectations rooted in Islamic values"
+      - "Zero tolerance for bullying"
+      - "Regular contact with parents, including two parent–teacher conferences a year"
+  - id: activities
+    title: "Activities & Clubs"
+    text: |
+      Learning at Rowad Bloom goes beyond the timetable. Activities and clubs help students discover new interests, build friendships and develop leadership and teamwork.
+
+      Throughout the year, the whole school comes together to celebrate national occasions such as Saudi National Day and Founding Day.
+    list:
+      - "Quran recitation"
+      - "Coding and programming"
+      - "Reading and public speaking"
+      - "Science and STEM challenges"
+      - "Art and creativity"
+      - "Sports and physical activity"
+  - id: health
+    title: "Health & Safety"
+    text: |
+      Our school clinic cares for students during the school day, from minor injuries to feeling unwell. Parents are contacted promptly whenever their child needs to go home or needs medical attention.
+
+      Medication is given at school only with written consent from parents. Please tell us about any allergies or medical conditions when your child joins, and whenever anything changes.
+
+      Students are supervised at all times, including arrival and dismissal, and entry to the school is controlled so that only authorised visitors come on site.
+    list:
+      - "School clinic during the school day"
+      - "Medication only with written parental consent"
+      - "Supervised arrival and dismissal"
+      - "Controlled entry for visitors"
