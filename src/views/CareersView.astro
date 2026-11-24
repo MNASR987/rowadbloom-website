@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Rich from '../components/Rich.astro';
 import { rich } from '../lib/text';
 import Icon from '../components/Icon.astro';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, settings, type Lang, tr } from '../lib/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = getPage('careers', lang);
@@ -15,7 +15,7 @@ const vacancies = p.vacancies.items ?? [];
   <PageHero title={p.hero.title} text={p.hero.text} />
   <section class="section">
     <div class="container split">
-      <div class="reveal"><p class="eyebrow">Join us</p><h2>{p.why.title}</h2><p class="lead" set:html={rich(p.why.text)} /></div>
+      <div class="reveal"><p class="eyebrow">{tr('Join us', lang)}</p><h2>{p.why.title}</h2><p class="lead" set:html={rich(p.why.text)} /></div>
       <div class="card reveal" id="apply">
         <span class="icon-badge"><Icon name="mail" /></span>
         <h3>{p.apply.title}</h3>

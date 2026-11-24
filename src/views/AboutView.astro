@@ -9,7 +9,7 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { Image } from 'astro:assets';
 import { brandImage } from '../lib/images';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, settings, type Lang, tr } from '../lib/content';
 import { real } from '../lib/text';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -25,7 +25,7 @@ const showLeadership = people.length > 1;
     <section class="section" id="superintendent" aria-labelledby="superintendent-h">
       <div class="container split split--wide-text">
         <div class="reveal">
-          <p class="eyebrow">Welcome</p>
+          <p class="eyebrow">{tr('Welcome', lang)}</p>
           <h2 id="superintendent-h">{p.superintendent.title}</h2>
           <div class="welcome-body"><Rich paras text={p.superintendent.body} /></div>
           <p class="sign"><strong>{p.superintendent.name}</strong><span>{p.superintendent.role}</span>{p.superintendent.email && <a href={`mailto:${p.superintendent.email}`}>{p.superintendent.email}</a>}</p>
@@ -38,19 +38,19 @@ const showLeadership = people.length > 1;
   <section class="section word2" id="welcome" aria-labelledby="welcome-h">
     <div class="container split split--wide-text flip">
       <div class="reveal">
-        <p class="eyebrow">From the Principal</p>
+        <p class="eyebrow">{tr('From the Principal', lang)}</p>
         <h2 id="welcome-h">{p.welcome.title}</h2>
         <div class="welcome-body"><Rich paras text={p.welcome.body} /></div>
         <p class="sign"><Rich as="strong" text={p.welcome.name} /><span>{p.welcome.role}</span></p>
       </div>
-      <div class="reveal"><PhotoPlaceholder ratio="4 / 5" photo="principal.jpg" alt={p.welcome.name} crest caption="“Our door is open.”" /></div>
+      <div class="reveal"><PhotoPlaceholder ratio="4 / 5" photo="principal.jpg" alt={p.welcome.name} crest caption={tr('“Our door is open.”', lang)} /></div>
     </div>
   </section>
 
 
   <section class="section section--alt" id="vision" aria-labelledby="vision-h">
     <div class="container">
-      <h2 id="vision-h" class="visually-hidden">Vision, mission and values</h2>
+      <h2 id="vision-h" class="visually-hidden">{tr('Vision, mission and values', lang)}</h2>
       {(real(p.vision.text) || real(p.mission.text)) && (
       <div class="grid grid--2">
         {real(p.vision.text) && <article class="card statement reveal"><p class="eyebrow">{p.vision.title}</p><p class="big" set:html={rich(p.vision.text)} /></article>}
@@ -75,7 +75,7 @@ const showLeadership = people.length > 1;
 
   {showLeadership && <section class="section section--alt" id="leadership" aria-labelledby="lead-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Our team</p><h2 id="lead-h">{p.leadership.title}</h2>{real(p.leadership.intro) && <Rich as="p" text={p.leadership.intro} />}</div>
+      <div class="section-head"><p class="eyebrow">{tr('Our team', lang)}</p><h2 id="lead-h">{p.leadership.title}</h2>{real(p.leadership.intro) && <Rich as="p" text={p.leadership.intro} />}</div>
       <div class="people">
         {people.map((person: any) => (
           <article class="person reveal">
@@ -91,7 +91,7 @@ const showLeadership = people.length > 1;
 
   <section class="section" id="accreditation" aria-labelledby="acc-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Trust</p><h2 id="acc-h">{p.partnerships.title}</h2></div>
+      <div class="section-head"><p class="eyebrow">{tr('Trust', lang)}</p><h2 id="acc-h">{p.partnerships.title}</h2></div>
       <div class="grid grid--3">
         {p.partnerships.items.map((item: any) => (
           <article class="card reveal">{brandImage(item.logo)
@@ -105,20 +105,20 @@ const showLeadership = people.length > 1;
   <section class="section section--navy" id="licensing" aria-labelledby="lic-h">
     <div class="container split">
       <div>
-        <p class="eyebrow">Official</p>
+        <p class="eyebrow">{tr('Official', lang)}</p>
         <h2 id="lic-h">{p.licensing.title}</h2>
         <p class="lic-text">{p.licensing.text}</p>
       </div>
       <dl class="lic">
         <div><dt>{ui.footer.licence}</dt><dd dir="ltr">{settings.licence.ministryLicenceNo}</dd></div>
         <div><dt>{ui.footer.unified}</dt><dd dir="ltr">{settings.licence.unifiedNo}</dd></div>
-        <div><dt>Girls</dt><dd>KG1 – Grade 12</dd></div>
-        <div><dt>Boys</dt><dd>KG1 – Grade 6</dd></div>
+        <div><dt>{tr('Girls', lang)}</dt><dd>{tr('KG1 – Grade 12', lang)}</dd></div>
+        <div><dt>{tr('Boys', lang)}</dt><dd>{tr('KG1 – Grade 12', lang)}</dd></div>
       </dl>
     </div>
   </section>
 
-  <CtaBand title="Come and see Rowad Bloom for yourself" lang={lang} />
+  <CtaBand title={tr('Come and see Rowad Bloom for yourself', lang)} lang={lang} />
 </BaseLayout>
 <style>
   .word2 { border-block-start: 1px solid var(--c-border); }

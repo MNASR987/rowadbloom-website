@@ -10,7 +10,7 @@ import VideoEmbed from '../components/VideoEmbed.astro';
 import Offers from '../components/Offers.astro';
 import NewsCard from '../components/NewsCard.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, settings, type Lang, tr } from '../lib/content';
 import { href } from '../lib/paths';
 import { real } from '../lib/text';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
@@ -28,7 +28,7 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
     ? <HomeBanner hero={page.hero} buttons={ui.buttons} lang={lang} />
     : <HomeHero hero={page.hero} buttons={ui.buttons} lang={lang} />}
 
-  <section class="facts-wrap" aria-label="Key facts">
+  <section class="facts-wrap" aria-label={tr('Key facts', lang)}>
     <div class="container">
       <ul class="facts" role="list">
         {page.facts.map((f: any) => (
@@ -41,7 +41,7 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
   <section class="section" aria-labelledby="why">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Rowad Bloom International Schools</p>
+        <p class="eyebrow">{tr('Rowad Bloom International Schools', lang)}</p>
         <h2 id="why">{page.why.title}</h2>
         <Rich as="p" text={page.why.intro} />
       </div>
@@ -69,7 +69,7 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
   {page.video.url && <section class="section section--alt" aria-labelledby="film">
     <div class="container split">
       <div class="reveal">
-        <p class="eyebrow">Watch</p>
+        <p class="eyebrow">{tr('Watch', lang)}</p>
         <h2 id="film">{page.video.title}</h2>
         <p class="muted">{page.video.text}</p>
       </div>
@@ -80,7 +80,7 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
   <section class="section section--navy journey" aria-labelledby="journey">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">KG to Grade 12</p>
+        <p class="eyebrow">{tr('KG to Grade 12', lang)}</p>
         <h2 id="journey">{page.journey.title}</h2>
         <p>{page.journey.intro}</p>
       </div>
@@ -103,30 +103,30 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
   <section class="section section--alt" aria-labelledby="visit">
     <div class="container split">
       <div class="reveal">
-        <p class="eyebrow">{tourUrl ? 'Virtual tour' : 'Visit us'}</p>
+        <p class="eyebrow">{tr(tourUrl ? 'Virtual tour' : 'Visit us', lang)}</p>
         <h2 id="visit">{page.tour.title}</h2>
         <p class="muted">{page.tour.text}</p>
         <div class="btn-row" style="margin-block-start:2rem">
           <a class="btn btn--navy" href={href('/admissions/?type=tour#enquire', lang)}>{ui.buttons.bookTour}</a>
-          <a class="link-arrow" href={href('/contact/', lang)}>Find us</a>
+          <a class="link-arrow" href={href('/contact/', lang)}>{tr('Find us', lang)}</a>
         </div>
       </div>
       <div class="reveal">{tourUrl
-        ? <VideoEmbed url={tourUrl} title="Virtual tour" />
-        : <PhotoPlaceholder photo="campus.jpg" alt="Rowad Bloom International Schools building, Riyadh" crest caption="Al Aziziyah, Riyadh — we look forward to welcoming you." ratio="16 / 10" />}</div>
+        ? <VideoEmbed url={tourUrl} title={tr('Virtual tour', lang)} />
+        : <PhotoPlaceholder photo="campus.jpg" alt={tr('Rowad Bloom International Schools building, Riyadh', lang)} crest caption={tr('Al Aziziyah, Riyadh — we look forward to welcoming you.', lang)} ratio="16 / 10" />}</div>
     </div>
   </section>
 
   <section class="section" aria-labelledby="news">
     <div class="container">
       <div class="head-row">
-        <div class="section-head"><p class="eyebrow">Latest</p><h2 id="news">{page.news.title}</h2></div>
+        <div class="section-head"><p class="eyebrow">{tr('Latest', lang)}</p><h2 id="news">{page.news.title}</h2></div>
         <a class="link-arrow" href={href('/news/', lang)}>{page.news.linkLabel}</a>
       </div>
       {news.length ? (
         <div class="grid grid--3">{news.map((n) => <NewsCard entry={n} />)}</div>
       ) : (
-        <p class="muted">News and events will appear here soon.</p>
+        <p class="muted">{tr('News and events will appear here soon.', lang)}</p>
       )}
     </div>
   </section>
@@ -134,7 +134,7 @@ const news = (await getCollection('news')).sort((a, b) => +b.data.date - +a.data
   {voices.length > 0 && <section class="section section--alt" aria-labelledby="voice">
     <div class="container">
       <div class="section-head section-head--center">
-        <p class="eyebrow">Families</p>
+        <p class="eyebrow">{tr('Families', lang)}</p>
         <h2 id="voice">{page.parentVoice.title}</h2>
         <p>{page.parentVoice.intro}</p>
       </div>

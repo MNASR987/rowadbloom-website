@@ -1,19 +1,23 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { getPage, type Lang } from '../lib/content';
+import { getPage, switchLangPath, tr, type Lang } from '../lib/content';
 import { href } from '../lib/paths';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ui = getPage('ui', lang);
 const current = Astro.url.pathname.replace(/\/$/, '');
+const other = switchLangPath(Astro.url);
+// The switch is written in the language it leads to, so a parent can always read it.
+const otherLabel = other.lang === 'ar' ? 'العربية' : 'English';
+const otherShort = other.lang === 'ar' ? 'عربي' : 'EN';
 const isActive = (p: string) => current.endsWith(p.replace(/\/$/, ''));
 ---
 <header class="site-header" data-header>
   <div class="container bar">
     <a href={href('/', lang)} class="brand"><Logo size="sm" /></a>
 
-    <nav class="desktop-nav" aria-label="Main">
+    <nav class="desktop-nav" aria-label={tr('Main', lang)}>
       <ul>
         {ui.nav.map((item: any) => (
           <li><a href={href(item.href, lang)} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a></li>
@@ -22,6 +26,7 @@ const isActive = (p: string) => current.endsWith(p.replace(/\/$/, ''));
     </nav>
 
     <div class="actions">
+      <a class="lang-switch" href={other.path} lang={other.lang} hreflang={other.lang} aria-label={otherLabel}><span class="long">{otherLabel}</span><span class="short" aria-hidden="true">{otherShort}</span></a>
       <a class="btn btn--outline btn--sm tour" href={href('/admissions/?type=tour#enquire', lang)}>{ui.buttons.bookTour}</a>
       <a class="btn btn--gold btn--sm" href={href('/admissions/#enquire', lang)}>{ui.buttons.enquireShort}</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
@@ -36,13 +41,14 @@ const isActive = (p: string) => current.endsWith(p.replace(/\/$/, ''));
         <Logo light size="sm" />
         <button class="menu-btn light" type="button" data-menu-close><Icon name="close" /><span class="visually-hidden">{ui.buttons.close}</span></button>
       </div>
-      <nav aria-label="Mobile">
+      <nav aria-label={tr('Mobile', lang)}>
         <ul>
           {[...ui.nav, ...ui.moreNav].map((item: any) => (
             <li><a href={href(item.href, lang)} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a></li>
           ))}
         </ul>
       </nav>
+      <a class="mm-lang" href={other.path} lang={other.lang} hreflang={other.lang}>{otherLabel}</a>
       <div class="btn-row">
         <a class="btn btn--gold" href={href('/admissions/#enquire', lang)}>{ui.buttons.enquire}</a>
         <a class="btn btn--outline-light" href={href('/admissions/?type=tour#enquire', lang)}>{ui.buttons.bookTour}</a>
@@ -85,8 +91,15 @@ const isActive = (p: string) => current.endsWith(p.replace(/\/$/, ''));
   .desktop-nav a:hover, .desktop-nav a[aria-current='page'] { color: var(--c-primary); border-color: var(--c-accent); }
   .actions { display: flex; align-items: center; gap: .6rem; }
   .tour { display: none; }
+  .lang-switch { display: inline-flex; align-items: center; min-block-size: 40px; padding-inline: .7rem; border-radius: 999px; border: 1px solid var(--c-border); text-decoration: none; font-weight: 600; font-size: .92rem; color: var(--c-primary); white-space: nowrap; }
+  .lang-switch:hover { border-color: var(--c-accent); }
+  .lang-switch .long { display: none; }
+  @media (min-width: 480px) { .lang-switch .long { display: inline; } .lang-switch .short { display: none; } }
+  .mm-lang { align-self: flex-start; color: #fff; text-decoration: none; font-weight: 600; font-size: 1.15rem; padding: .55rem 1.1rem; border: 1px solid rgba(255,255,255,.4); border-radius: 999px; }
   .menu-btn { flex-shrink: 0; display: grid; place-items: center; inline-size: 46px; block-size: 46px; border-radius: 50%; border: 1px solid var(--c-border); background: #fff; color: var(--c-primary); cursor: pointer; }
   .menu-btn.light { background: transparent; color: #fff; border-color: rgba(255,255,255,.35); }
+  /* Small phones: the header keeps the logo, the language switch and the menu; Enquire is in the menu and on the page. */
+  @media (max-width: 479px) { .actions .btn--gold { display: none; } }
   @media (max-width: 420px) { .actions .btn--gold { padding-inline: .9rem; } .menu-btn { inline-size: 42px; block-size: 42px; } }
   @media (min-width: 640px) { .tour { display: inline-flex; } }
   @media (min-width: 1180px) { .desktop-nav { display: block; } .menu-btn[data-menu-open] { display: none; } }

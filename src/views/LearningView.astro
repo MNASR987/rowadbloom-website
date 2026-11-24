@@ -6,7 +6,7 @@ import { rich, paragraphs } from '../lib/text';
 import Icon from '../components/Icon.astro';
 import SubNav from '../components/SubNav.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { getPage, type Lang } from '../lib/content';
+import { getPage, type Lang, tr } from '../lib/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = getPage('learning', lang);
@@ -21,7 +21,7 @@ const subnav = [
 
   <section class="section" id="journey" aria-labelledby="journey-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">KG to Grade 12</p><h2 id="journey-h">{p.journey.title}</h2><p>{p.journey.intro}</p></div>
+      <div class="section-head"><p class="eyebrow">{tr('KG to Grade 12', lang)}</p><h2 id="journey-h">{p.journey.title}</h2><p>{p.journey.intro}</p></div>
       <ol class="timeline" role="list">
         {p.journey.phases.map((ph: any, i: number) => (
           <li class="reveal">
@@ -39,12 +39,12 @@ const subnav = [
   </section>
 
   <section class="section section--alt" id="curriculum" aria-labelledby="cur-h">
-    <div class="narrow reveal"><p class="eyebrow">Curriculum</p><h2 id="cur-h">{p.curriculum.title}</h2>{paragraphs(p.curriculum.text).map((t) => <p class="lead" set:html={rich(t)} />)}</div>
+    <div class="narrow reveal"><p class="eyebrow">{tr('Curriculum', lang)}</p><h2 id="cur-h">{p.curriculum.title}</h2>{paragraphs(p.curriculum.text).map((t) => <p class="lead" set:html={rich(t)} />)}</div>
   </section>
 
   <section class="section" id="identity" aria-labelledby="id-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Identity</p><h2 id="id-h">{p.identity.title}</h2><p>{p.identity.intro}</p></div>
+      <div class="section-head"><p class="eyebrow">{tr('Identity', lang)}</p><h2 id="id-h">{p.identity.title}</h2><p>{p.identity.intro}</p></div>
       <div class="grid grid--3">
         {p.identity.items.map((s: any, i: number) => (
           <article class="card card--gold-top reveal"><span class="icon-badge"><Icon name={['book', 'crescent', 'globe'][i] ?? 'book'} /></span><h3>{s.title}</h3><Rich as="p" text={s.text} /></article>
@@ -54,13 +54,13 @@ const subnav = [
   </section>
 
   <section class="section section--alt" id="languages" aria-labelledby="lang-h">
-    <div class="narrow reveal"><p class="eyebrow">Languages</p><h2 id="lang-h">{p.languages.title}</h2>{paragraphs(p.languages.text).map((t) => <p class="lead" set:html={rich(t)} />)}</div>
+    <div class="narrow reveal"><p class="eyebrow">{tr('Languages', lang)}</p><h2 id="lang-h">{p.languages.title}</h2>{paragraphs(p.languages.text).map((t) => <p class="lead" set:html={rich(t)} />)}</div>
   </section>
 
   <section class="section section--navy" id="stem" aria-labelledby="stem-h">
     <div class="container split">
       <div class="reveal">
-        <p class="eyebrow">Partnership · Japan</p>
+        <p class="eyebrow">{tr('British section', lang)}</p>
         <h2 id="stem-h">{p.stem.title}</h2>
         <p class="lead light">{p.stem.text}</p>
       </div>
@@ -72,10 +72,10 @@ const subnav = [
   </section>
 
   <section class="section" id="assessment" aria-labelledby="as-h">
-    <div class="narrow reveal"><p class="eyebrow">Assessment</p><h2 id="as-h">{p.assessment.title}</h2>{paragraphs(p.assessment.text).map((t) => <p class="lead" set:html={rich(t)} />)}</div>
+    <div class="narrow reveal"><p class="eyebrow">{tr('Assessment', lang)}</p><h2 id="as-h">{p.assessment.title}</h2>{paragraphs(p.assessment.text).map((t) => <p class="lead" set:html={rich(t)} />)}</div>
   </section>
 
-  <CtaBand title="See learning in action" text="Book a tour to visit classrooms and meet our teachers." lang={lang} />
+  <CtaBand title={tr('See learning in action', lang)} text={tr('Book a tour to visit classrooms and meet our teachers.', lang)} lang={lang} />
 </BaseLayout>
 <style>
   .lead { font-size: 1.15rem; margin-block-start: 1.25rem; }
@@ -88,7 +88,7 @@ const subnav = [
   @media (min-width: 900px) {
     .timeline { grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
     .timeline::before { inset-inline: 1.5rem; inset-block: 1.5rem auto; block-size: 2px; inline-size: auto; background: linear-gradient(90deg, var(--c-accent), var(--c-primary)); }
-    [dir='rtl'] .timeline::before { background: linear-gradient(-90deg, var(--c-accent), var(--c-primary)); }
+    :global([dir='rtl']) .timeline::before { background: linear-gradient(-90deg, var(--c-accent), var(--c-primary)); }
     .timeline li { grid-template-columns: 1fr; grid-template-rows: 3rem 1fr; }
   }
   .grades { font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--c-accent-text); }

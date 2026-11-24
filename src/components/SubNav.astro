@@ -1,9 +1,10 @@
 ---
 // "On this page" links shown under the page title.
+import { tr, langOf } from '../lib/content';
 interface Props { items: [string, string][] }
 const { items } = Astro.props;
 ---
-<nav class="subnav" aria-label="On this page">
+<nav class="subnav" aria-label={tr('On this page', langOf(Astro.url))}>
   <div class="container"><ul>{items.map(([h, l]) => <li><a href={h}>{l}</a></li>)}</ul></div>
 </nav>
 <style>

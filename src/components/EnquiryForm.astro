@@ -3,7 +3,7 @@
 // Sending: see "forms" in content/settings.yaml.
 import Icon from './Icon.astro';
 import Rich from './Rich.astro';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, settings, tr, type Lang } from '../lib/content';
 import { href } from '../lib/paths';
 import { email, whatsappNumber } from '../lib/contact';
 interface Props { lang?: Lang }
@@ -12,11 +12,13 @@ const t = getPage('ui', lang).form;
 const msForm = settings.forms?.microsoftFormsEmbedUrl;
 const endpoint = settings.forms?.enquiryEndpoint ?? '';
 const grades = ['KG1', 'KG2', 'KG3', ...Array.from({ length: 12 }, (_, i) => `Grade ${i + 1}`)];
+// What the visitor sees; the value sent to the school stays in English.
+const gradeLabel = (g: string) => (lang === 'ar' ? g.replace('Grade', 'الصف') : g);
 const thisYear = new Date().getFullYear();
 const years = [`${thisYear}–${thisYear + 1}`, `${thisYear + 1}–${thisYear + 2}`];
 ---
 {msForm ? (
-  <iframe class="ms-form" src={msForm} title="Enquiry form" loading="lazy"></iframe>
+  <iframe class="ms-form" src={msForm} title={tr('Enquiry form', lang)} loading="lazy"></iframe>
 ) : (
 <form class="enquiry" data-enquiry data-endpoint={endpoint} data-whatsapp={whatsappNumber} data-email={email} novalidate>
   <fieldset class="type">
@@ -40,17 +42,16 @@ const years = [`${thisYear}–${thisYear + 1}`, `${thisYear + 1}–${thisYear + 
     </div>
     <div class="field">
       <label for="f-section">{t.section} <span class="req" aria-hidden="true">*</span></label>
-      <select id="f-section" name="section" required aria-describedby="f-section-note">
+      <select id="f-section" name="section" required>
         <option value="Girls">{t.sectionGirls}</option>
         <option value="Boys">{t.sectionBoys}</option>
       </select>
-      <small id="f-section-note" class="hint">{t.boysNote}</small>
     </div>
     <div class="field">
       <label for="f-grade">{t.grade} <span class="req" aria-hidden="true">*</span></label>
       <select id="f-grade" name="grade" required>
         <option value="">{t.gradeChoose}</option>
-        {grades.map((g, i) => <option value={g} data-index={i}>{g}</option>)}
+        {grades.map((g, i) => <option value={g}>{gradeLabel(g)}</option>)}
       </select>
     </div>
     <div class="field">
@@ -59,7 +60,7 @@ const years = [`${thisYear}–${thisYear + 1}`, `${thisYear + 1}–${thisYear + 
     </div>
     <div class="field">
       <label for="f-contact">{t.contactBy}</label>
-      <select id="f-contact" name="contactBy"><option>WhatsApp</option><option>Phone call</option><option>Email</option></select>
+      <select id="f-contact" name="contactBy"><option value="WhatsApp">{tr('WhatsApp', lang)}</option><option value="Phone call">{tr('Phone call', lang)}</option><option value="Email">{tr('Email', lang)}</option></select>
     </div>
     <div class="field full">
       <label for="f-message">{t.message}</label>
@@ -98,16 +99,6 @@ const years = [`${thisYear}–${thisYear + 1}`, `${thisYear + 1}–${thisYear + 
     if (new URLSearchParams(location.search).get('type') === 'tour') {
       form.querySelector<HTMLInputElement>('input[value="School tour"]')!.checked = true;
     }
-    // Boys: only KG1 – Grade 6 can be chosen.
-    const section = form.querySelector<HTMLSelectElement>('[name=section]')!;
-    const grade = form.querySelector<HTMLSelectElement>('[name=grade]')!;
-    const syncGrades = () => {
-      grade.querySelectorAll<HTMLOptionElement>('option[data-index]').forEach((o) => {
-        o.disabled = section.value === 'Boys' && Number(o.dataset.index) > 8;
-      });
-      if (grade.selectedOptions[0]?.disabled) grade.value = '';
-    };
-    section.addEventListener('change', syncGrades);
 
     const errors = form.querySelector<HTMLElement>('[data-errors]')!;
     const result = form.querySelector<HTMLElement>('[data-result]')!;

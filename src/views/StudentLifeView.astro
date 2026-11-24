@@ -7,7 +7,7 @@ import Icon from '../components/Icon.astro';
 import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import VideoEmbed from '../components/VideoEmbed.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { getPage, type Lang } from '../lib/content';
+import { getPage, type Lang, tr } from '../lib/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = getPage('student-life', lang);
@@ -25,7 +25,7 @@ const captions: Record<string, string> = { wellbeing: 'Safe, known and valued.',
           {paragraphs(s.text).map((t: string) => <p class="lead" set:html={rich(t)} />)}
           {s.list && <ul class="check-list">{s.list.map((li: string) => <li><Rich text={li} /></li>)}</ul>}
         </div>
-        <div class="reveal"><PhotoPlaceholder photo={`${s.id}.jpg`} icon={icons[s.id] ?? 'star'} caption={captions[s.id]} /></div>
+        <div class="reveal"><PhotoPlaceholder photo={`${s.id}.jpg`} icon={icons[s.id] ?? 'star'} caption={tr(captions[s.id], lang)} /></div>
       </div>
     </section>
   ))}
@@ -35,7 +35,7 @@ const captions: Record<string, string> = { wellbeing: 'Safe, known and valued.',
       <VideoEmbed url={p.video.url} title={p.video.title} />
     </div>
   </section>}
-  <CtaBand title="Discover life at Rowad Bloom" lang={lang} />
+  <CtaBand title={tr('Discover life at Rowad Bloom', lang)} lang={lang} />
 </BaseLayout>
 <style>
   .lead { font-size: 1.08rem; margin-block: 1rem; color: var(--c-text-muted); }

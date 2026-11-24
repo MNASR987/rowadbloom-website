@@ -2,12 +2,13 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import Rich from './Rich.astro';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, localSettings, tr, type Lang } from '../lib/content';
 import { href } from '../lib/paths';
 import { phone, email, telLink, mailLink, whatsappLink } from '../lib/contact';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ui = getPage('ui', lang);
+const settings = localSettings(lang);
 const year = new Date().getFullYear();
 const c = settings.contact;
 const social = Object.entries(settings.links ?? {}).filter(([k, v]) => ['instagram', 'x', 'linkedin', 'youtube'].includes(k) && v);
@@ -27,7 +28,7 @@ const socialNames: Record<string, string> = { instagram: 'Instagram', x: 'X', li
         <a class="btn btn--outline-light btn--sm" href={href('/admissions/?type=tour#enquire', lang)}>{ui.buttons.bookTour}</a>
       </div>
     </div>
-    <nav aria-label="Footer">
+    <nav aria-label={tr('Footer', lang)}>
       <h2 class="f-head">{ui.footer.explore}</h2>
       <ul class="links">
         {[...ui.nav, ...ui.moreNav].map((i: any) => <li><a href={href(i.href, lang)}>{i.label}</a></li>)}
@@ -39,7 +40,7 @@ const socialNames: Record<string, string> = { instagram: 'Instagram', x: 'X', li
         <li><Icon name="pin" size={18} /><Rich text={c.address || '[TO CONFIRM: School address]'} /></li>
         <li><Icon name="phone" size={18} />{phone ? <a href={telLink} dir="ltr">{phone}</a> : <Rich text="[TO CONFIRM: Phone]" />}</li>
         <li><Icon name="mail" size={18} />{email ? <a href={mailLink}>{email}</a> : <Rich text="[TO CONFIRM: Email]" />}</li>
-        <li><Icon name="whatsapp" size={18} />{whatsappLink() ? <a href={whatsappLink()} rel="noopener">WhatsApp</a> : <Rich text="[TO CONFIRM: WhatsApp number]" />}</li>
+        <li><Icon name="whatsapp" size={18} />{whatsappLink() ? <a href={whatsappLink()} rel="noopener">{tr('WhatsApp', lang)}</a> : <Rich text="[TO CONFIRM: WhatsApp number]" />}</li>
       </ul>
       {social.length > 0 && (
         <ul class="social">{social.map(([k, v]) => <li><a href={v as string} rel="noopener">{socialNames[k]}</a></li>)}</ul>
@@ -53,7 +54,7 @@ const socialNames: Record<string, string> = { instagram: 'Instagram', x: 'X', li
         <span>{ui.footer.licence} <strong dir="ltr">{settings.licence.ministryLicenceNo}</strong></span>
         <span>{ui.footer.unified} <strong dir="ltr">{settings.licence.unifiedNo}</strong></span>
       </p>
-      <p>© {year} {settings.schoolName}. {ui.footer.rights} · <a href={href('/privacy/', lang)}>Privacy Policy</a></p>
+      <p>© {year} {settings.schoolName}. {ui.footer.rights} · <a href={href('/privacy/', lang)}>{tr('Privacy Policy', lang)}</a></p>
     </div>
   </div>
 </footer>

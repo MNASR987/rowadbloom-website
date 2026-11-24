@@ -41,3 +41,16 @@ forms:
   enquiryEndpoint: ""
   # Until A or B is set, the built-in form sends the enquiry by
   # WhatsApp or email (using the contact details above).
+
+# ─────────────────────────────────────────────────────────────
+#  ARABIC WORDING — used on the Arabic pages (/ar/) instead of the
+#  English text above. Numbers, email and links are shared.
+# ─────────────────────────────────────────────────────────────
+ar:
+  schoolName: "مدارس رواد بلوم العالمية"
+  group: "أكاديمية رواد الشروق"
+  city: "الرياض"
+  country: "المملكة العربية السعودية"
+  contact:
+    address: "4118 طريق النصر، حي العزيزية، الرياض 14511، المملكة العربية السعودية"
+    workingHours: ""

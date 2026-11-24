@@ -6,7 +6,7 @@ import Icon from '../components/Icon.astro';
 import SubNav from '../components/SubNav.astro';
 import Offers from '../components/Offers.astro';
 import EnquiryForm from '../components/EnquiryForm.astro';
-import { getPage, type Lang } from '../lib/content';
+import { getPage, type Lang, tr } from '../lib/content';
 import { phone, email, telLink, mailLink, whatsappLink } from '../lib/contact';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -29,7 +29,7 @@ const subnav = [
 
   <section class="section" id="who" aria-labelledby="who-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Admissions</p><h2 id="who-h">{p.whoWeAdmit.title}</h2></div>
+      <div class="section-head"><p class="eyebrow">{tr('Admissions', lang)}</p><h2 id="who-h">{p.whoWeAdmit.title}</h2></div>
       <div class="grid grid--2">
         {p.whoWeAdmit.groups.map((g: any) => (
           <article class="card admit reveal"><p class="eyebrow">{g.title}</p><p class="range">{g.text}</p></article>
@@ -41,7 +41,7 @@ const subnav = [
 
   <section class="section section--alt" id="process" aria-labelledby="proc-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Step by step</p><h2 id="proc-h">{p.process.title}</h2><Rich as="p" text={p.process.note} /></div>
+      <div class="section-head"><p class="eyebrow">{tr('Step by step', lang)}</p><h2 id="proc-h">{p.process.title}</h2><Rich as="p" text={p.process.note} /></div>
       <ol class="process" role="list">
         {p.process.steps.map((s: any, i: number) => (
           <li class="reveal"><span class="n" aria-hidden="true">{i + 1}</span><div><h3><span class="visually-hidden">Step {i + 1}: </span>{s.title}</h3><Rich as="p" text={s.text} /></div></li>
@@ -53,7 +53,7 @@ const subnav = [
   <section class="section" id="documents" aria-labelledby="doc-h">
     <div class="container split">
       <div>
-        <p class="eyebrow">Checklist</p>
+        <p class="eyebrow">{tr('Checklist', lang)}</p>
         <h2 id="doc-h">{p.documents.title}</h2>
         <p class="note"><Rich text={p.documents.note} /></p>
       </div>
@@ -64,7 +64,7 @@ const subnav = [
   {hasFees && (
   <section class="section section--alt" id="fees" aria-labelledby="fees-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">2026 – 2027</p><h2 id="fees-h">{p.fees.title}</h2><p>{p.fees.intro}</p></div>
+      <div class="section-head"><p class="eyebrow">{tr('2026 – 2027', lang)}</p><h2 id="fees-h">{p.fees.title}</h2><p>{p.fees.intro}</p></div>
       <div class="fees-wrap reveal">
         <table class="fees">
           <caption class="visually-hidden">{p.fees.title}. {p.fees.intro}</caption>
@@ -85,7 +85,7 @@ const subnav = [
 
   <section class="section section--alt" id="faq" aria-labelledby="faq-h">
     <div class="narrow">
-      <div class="section-head"><p class="eyebrow">Questions</p><h2 id="faq-h">{p.faq.title}</h2></div>
+      <div class="section-head"><p class="eyebrow">{tr('Questions', lang)}</p><h2 id="faq-h">{p.faq.title}</h2></div>
       <div class="faq">
         {p.faq.items.map((f: any) => (
           <details><summary>{f.q}<Icon name="plus" size={20} class="faq-icon" /></summary><Rich as="p" text={f.a} /></details>
@@ -97,7 +97,7 @@ const subnav = [
   <section class="section section--navy" id="enquire" aria-labelledby="enq-h">
     <div class="container enquire">
       <div>
-        <p class="eyebrow">Get in touch</p>
+        <p class="eyebrow">{tr('Get in touch', lang)}</p>
         <h2 id="enq-h">{p.enquire.title}</h2>
         <p class="lead">{p.enquire.text}</p>
         <ul class="direct">

@@ -1,13 +1,13 @@
 ---
 import Icon from './Icon.astro';
-import { getPage, type Lang } from '../lib/content';
+import { getPage, tr, type Lang } from '../lib/content';
 import { href } from '../lib/paths';
 import { whatsappLink } from '../lib/contact';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ui = getPage('ui', lang);
 // Until a WhatsApp number is set in content/settings.yaml, the button opens the Contact page.
-const link = whatsappLink('Hello, I would like to know more about Rowad Bloom International Schools.') || href('/contact/#whatsapp', lang);
+const link = whatsappLink(tr('Hello, I would like to know more about Rowad Bloom International Schools.', lang)) || href('/contact/#whatsapp', lang);
 ---
 <div class="floating">
   <a class="wa" href={link} rel="noopener" aria-label={ui.buttons.whatsapp}>

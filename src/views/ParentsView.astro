@@ -5,7 +5,7 @@ import SubNav from '../components/SubNav.astro';
 import Rich from '../components/Rich.astro';
 import Icon from '../components/Icon.astro';
 import CalendarSection from '../components/CalendarSection.astro';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, settings, type Lang, tr } from '../lib/content';
 import { asset } from '../lib/paths';
 import { rich, paragraphs, real } from '../lib/text';
 interface Props { lang: Lang }
@@ -16,11 +16,11 @@ const portal = settings.links.parentPortal;
 <BaseLayout title={p.seo.title} description={p.seo.description} lang={lang}>
   <PageHero title={p.hero.title} text={p.hero.text}>
     <div class="btn-row" style="margin-block-start:2rem">
-      <a class="btn btn--gold" href="#calendar"><Icon name="calendar" size={18} /> Academic calendar</a>
+      <a class="btn btn--gold" href="#calendar"><Icon name="calendar" size={18} /> {tr('Academic calendar', lang)}</a>
       {portal && <a class="btn btn--outline-light" href={portal} rel="noopener"><Icon name="lock" size={18} /> {p.portal.button}</a>}
     </div>
   </PageHero>
-  <SubNav items={[['#calendar', 'Calendar'], ...(p.uniform && real(p.uniform.text) ? [['#uniform', 'Uniform']] : []), ['#together', 'Working together'], ['#policies', 'Policies'], ...(portal ? [['#portal', 'Parent Portal']] : [])] as [string, string][]} />
+  <SubNav items={[['#calendar', tr('Calendar', lang)], ...(p.uniform && real(p.uniform.text) ? [['#uniform', tr('Uniform', lang)]] : []), ['#together', tr('Working together', lang)], ['#policies', tr('Policies', lang)], ...(portal ? [['#portal', tr('Parent Portal', lang)]] : [])] as [string, string][]} />
 
   <CalendarSection lang={lang} />
 
@@ -28,13 +28,13 @@ const portal = settings.links.parentPortal;
   <section class="section section--alt" id="uniform" aria-labelledby="uni-h">
     <div class="container split">
       <div class="reveal">
-        <p class="eyebrow">Every day</p>
+        <p class="eyebrow">{tr('Every day', lang)}</p>
         <h2 id="uni-h">{p.uniform.title}</h2>
         <div class="body">{paragraphs(p.uniform.text).map((t) => <p set:html={rich(t)} />)}</div>
       </div>
       <div class="swatches reveal" aria-hidden="true">
-        <div class="shirt girls"><span class="crest">B</span><p>Girls</p><small>School uniform</small></div>
-        <div class="shirt boys"><span class="crest">B</span><p>Boys</p><small>School uniform</small></div>
+        <div class="shirt girls"><span class="crest">B</span><p>{tr('Girls', lang)}</p><small>{tr('School uniform', lang)}</small></div>
+        <div class="shirt boys"><span class="crest">B</span><p>{tr('Boys', lang)}</p><small>{tr('School uniform', lang)}</small></div>
       </div>
     </div>
   </section>
@@ -42,7 +42,7 @@ const portal = settings.links.parentPortal;
 
   <section class="section" id="together" aria-labelledby="tog-h">
     <div class="container">
-      <div class="section-head"><p class="eyebrow">Partnership</p><h2 id="tog-h">{p.partnership.title}</h2></div>
+      <div class="section-head"><p class="eyebrow">{tr('Partnership', lang)}</p><h2 id="tog-h">{p.partnership.title}</h2></div>
       <div class="grid grid--3">
         {p.partnership.items.map((it: any) => <article class="card card--gold-top reveal"><h3>{it.title}</h3><Rich as="p" text={it.text} /></article>)}
       </div>
@@ -51,7 +51,7 @@ const portal = settings.links.parentPortal;
 
   <section class="section section--alt" id="policies" aria-labelledby="pol-h">
     <div class="narrow">
-      <div class="section-head"><p class="eyebrow">Policies</p><h2 id="pol-h">{p.policies.title}</h2><Rich as="p" text={p.policies.intro} /></div>
+      <div class="section-head"><p class="eyebrow">{tr('Policies', lang)}</p><h2 id="pol-h">{p.policies.title}</h2><Rich as="p" text={p.policies.intro} /></div>
       <ul class="policies" role="list">
         {p.policies.items.map((pol: any) => (
           <li>

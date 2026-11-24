@@ -60,4 +60,3 @@ form:
   sendWhatsapp: "Send by WhatsApp"
   sendEmail: "Send by email"
   fallbackMissing: "[TO CONFIRM: WhatsApp number and admissions email in content/settings.yaml]"
-  boysNote: "Boys are admitted from KG1 to Grade 6."

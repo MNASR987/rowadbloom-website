@@ -22,4 +22,25 @@ export function getPage<T = any>(name: string, lang: Lang = 'en'): T {
 }
 
 export const settings = readYaml(join(root, 'settings.yaml')) as any;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+/** Language of the page being built, read from its address (/ar/... is Arabic). */
+export const langOf = (url: URL): Lang => (/^\/ar(\/|$)/.test(url.pathname.slice(base.length)) ? 'ar' : 'en');
+
+/** The same page in the other language (used by the language switch). */
+export function switchLangPath(url: URL): { lang: Lang; path: string } {
+  const lang = langOf(url);
+  const rest = url.pathname.slice(base.length).replace(/^\/ar(?=\/|$)/, '') || '/';
+  return lang === 'en' ? { lang: 'ar', path: `${base}/ar${rest === '/' ? '/' : rest}` } : { lang: 'en', path: `${base}${rest}` };
+}
+
+/** Short fixed phrases (section labels, captions): English in the code, Arabic in content/ar/strings.yaml. */
+const strings: Record<string, string> = existsSync(join(root, 'ar', 'strings.yaml')) ? readYaml(join(root, 'ar', 'strings.yaml')) : {};
+export const tr = (s: string, lang: Lang = 'en') => (lang === 'en' ? s : strings[s] ?? s);
+
+/** School settings with the Arabic wording (the "ar:" block in settings.yaml) applied on Arabic pages. */
+export function localSettings(lang: Lang = 'en') {
+  const o = lang === 'en' ? {} : settings[lang] ?? {};
+  return { ...settings, ...o, contact: { ...settings.contact, ...(o.contact ?? {}) } };
+}
 export const theme = themeJson;

@@ -2,8 +2,9 @@
 import Pattern from './Pattern.astro';
 import Rich from './Rich.astro';
 import { rich } from '../lib/text';
+import { tr, langOf } from '../lib/content';
 interface Props { title: string; text?: string; eyebrow?: string }
-const { title, text, eyebrow = 'Rowad Bloom International Schools' } = Astro.props;
+const { title, text, eyebrow = tr('Rowad Bloom International Schools', langOf(Astro.url)) } = Astro.props;
 ---
 <section class="page-hero">
   <Pattern opacity={0.1} />

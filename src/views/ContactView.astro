@@ -4,20 +4,21 @@ import PageHero from '../components/PageHero.astro';
 import Rich from '../components/Rich.astro';
 import Icon from '../components/Icon.astro';
 import Pattern from '../components/Pattern.astro';
-import { getPage, settings, type Lang } from '../lib/content';
+import { getPage, localSettings, type Lang, tr } from '../lib/content';
 import { phone, email, telLink, mailLink, whatsappLink } from '../lib/contact';
 import { href } from '../lib/paths';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = getPage('contact', lang);
 const ui = getPage('ui', lang);
+const settings = localSettings(lang);
 const c = settings.contact;
 const L = p.labels;
 const rows = [
   { id: 'phone', icon: 'phone', label: L.phone, link: telLink, value: phone, ltr: true, missing: '[TO CONFIRM: Phone number]' },
   { id: 'email', icon: 'mail', label: L.email, link: mailLink, value: email, missing: '[TO CONFIRM: Email address]' },
   { id: 'whatsapp', icon: 'whatsapp', label: L.whatsapp, link: whatsappLink(), value: whatsappLink() ? ui.buttons.whatsapp : '', missing: '[TO CONFIRM: WhatsApp number]' },
-  { id: 'address', icon: 'pin', label: L.address, link: c.mapLink, value: c.address + (c.shortAddress ? ` (National Address: ${c.shortAddress})` : ''), missing: '[TO CONFIRM: School address]' },
+  { id: 'address', icon: 'pin', label: L.address, link: c.mapLink, value: c.address + (c.shortAddress ? ` (${tr('National Address', lang)}: ${c.shortAddress})` : ''), missing: '[TO CONFIRM: School address]' },
   { id: 'hours', icon: 'clock', label: L.hours, link: '', value: c.workingHours, missing: '[TO CONFIRM: Working hours]' },
 ];
 ---
@@ -49,7 +50,7 @@ const rows = [
   <section class="section section--alt">
     <div class="narrow center">
       <h2>{ui.buttons.bookTour}</h2>
-      <p class="lead">Visit the school and meet our admissions team.</p>
+      <p class="lead">{tr('Visit the school and meet our admissions team.', lang)}</p>
       <div class="btn-row centered">
         <a class="btn btn--navy" href={href('/admissions/?type=tour#enquire', lang)}>{ui.buttons.bookTour}</a>
         <a class="btn btn--outline" href={href('/admissions/#enquire', lang)}>{ui.buttons.enquire}</a>

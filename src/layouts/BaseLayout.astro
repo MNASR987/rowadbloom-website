@@ -4,7 +4,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { getPage, languages, settings, theme, type Lang } from '../lib/content';
+import { getPage, languages, localSettings, switchLangPath, theme, type Lang } from '../lib/content';
 import { asset, href } from '../lib/paths';
 import { phone, email } from '../lib/contact';
 import siteConfig from '../../site.config.mjs';
@@ -12,9 +12,14 @@ import siteConfig from '../../site.config.mjs';
 interface Props { title: string; description: string; lang?: Lang; ogImage?: string; isHome?: boolean }
 const { title, description, lang = 'en', ogImage = 'og/default.jpg', isHome = false } = Astro.props;
 const ui = getPage('ui', lang);
+const settings = localSettings(lang);
+const other = switchLangPath(Astro.url);
+const abs = (path: string) => new URL(path, Astro.site).href;
+const enUrl = lang === 'en' ? abs(Astro.url.pathname) : abs(other.path);
+const arUrl = lang === 'ar' ? abs(Astro.url.pathname) : abs(other.path);
 const dir = languages[lang].dir;
 const school = settings.schoolName;
-const fullTitle = isHome ? title : `${title} | ${school}, ${settings.city}`;
+const fullTitle = isHome ? title : `${title} | ${school}${lang === 'ar' ? '،' : ','} ${settings.city}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogUrl = new URL(asset(ogImage), Astro.site);
 
@@ -32,7 +37,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'School',
   name: school,
-  url: new URL(href('/'), Astro.site).href,
+  url: new URL(href('/', lang), Astro.site).href,
   address: { '@type': 'PostalAddress', addressLocality: settings.city, addressCountry: 'SA', ...(settings.contact.address ? { streetAddress: settings.contact.address } : {}) },
   ...(settings.group ? { parentOrganization: { '@type': 'EducationalOrganization', name: settings.group } } : {}),
   ...(phone ? { telephone: phone } : {}),
@@ -48,6 +53,9 @@ const jsonLd = {
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="ar" href={arUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
     <link rel="icon" href={asset('favicon-48.png')} type="image/png" sizes="48x48" />
     <link rel="apple-touch-icon" href={asset('apple-touch-icon.png')} />
     <link rel="sitemap" href={asset('sitemap-index.xml')} />

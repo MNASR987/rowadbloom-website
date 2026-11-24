@@ -3,11 +3,13 @@
 // Without a logo file, a gold "M" monogram is shown instead.
 import { Image } from 'astro:assets';
 import { logo, logoWhite } from '../lib/images';
-import { theme } from '../lib/content';
+import { theme, langOf } from '../lib/content';
 interface Props { light?: boolean; size?: 'sm' | 'md' | 'lg' }
 const { light = false, size = 'md' } = Astro.props;
 const file = light ? (logoWhite ?? logo) : logo;
-const t = theme.logo as any;
+const raw = theme.logo as any;
+// Arabic pages show the Arabic school name next to the crest.
+const t = langOf(Astro.url) === 'ar' ? { ...raw, wordmarkTop: raw.wordmarkTopAr ?? raw.wordmarkTop, wordmarkBottom: raw.wordmarkBottomAr ?? raw.wordmarkBottom } : raw;
 const px = { sm: 56, md: 72, lg: 110 }[size];
 const name = `${t.wordmarkTop} ${t.wordmarkBottom}`;
 const showWords = !file || t.showWordsNextToLogo !== false;

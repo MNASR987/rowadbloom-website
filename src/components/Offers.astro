@@ -1,25 +1,27 @@
 ---
+import { tr, langOf } from '../lib/content';
 // "Offers & Announcements" — shows every poster image found in content/offers.
 import { Image } from 'astro:assets';
 import { offers } from '../lib/images';
 interface Props { title: string; intro?: string; hideWhenEmpty?: boolean; alt?: boolean }
 const { title, intro, hideWhenEmpty = false, alt = false } = Astro.props;
+const lang = langOf(Astro.url);
 ---
 {(offers.length > 0 || !hideWhenEmpty) && (
   <section class:list={['section', { 'section--alt': alt }]} id="offers" aria-labelledby="offers-title">
     <div class="container">
       <div class="section-head">
-        <p class="eyebrow">Announcements</p>
+        <p class="eyebrow">{tr('Announcements', lang)}</p>
         <h2 id="offers-title">{title}</h2>
         {intro && <p>{intro}</p>}
       </div>
       {offers.length === 0 ? (
-        <p class="empty">There are no announcements at the moment.</p>
+        <p class="empty">{tr('There are no announcements at the moment.', lang)}</p>
       ) : (
         <ul class="posters" role="list">
           {offers.map((o) => (
             <li class="reveal">
-              <a href={o.image.src} class="poster" target="_blank" rel="noopener" aria-label={`${o.alt} (opens full size)`}>
+              <a href={o.image.src} class="poster" target="_blank" rel="noopener" aria-label={`${o.alt} ${tr('(opens full size)', lang)}`}>
                 <Image src={o.image} alt={o.alt} widths={[360, 540, 720]} sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 90vw" />
               </a>
             </li>

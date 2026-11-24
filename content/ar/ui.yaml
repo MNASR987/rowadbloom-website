@@ -1,0 +1,62 @@
+# الكلمات المستخدمة في كل الصفحات (القائمة، الأزرار، التذييل).
+nav:
+  - { label: "عن المدرسة", href: "/about/" }
+  - { label: "التعلّم", href: "/learning/" }
+  - { label: "الحياة المدرسية", href: "/student-life/" }
+  - { label: "القبول والتسجيل", href: "/admissions/" }
+  - { label: "أولياء الأمور", href: "/parents/" }
+  - { label: "الأخبار والفعاليات", href: "/news/" }
+  - { label: "اتصل بنا", href: "/contact/" }
+moreNav:
+  - { label: "الوظائف", href: "/careers/" }
+  - { label: "سياسة الخصوصية", href: "/privacy/" }
+buttons:
+  enquire: "استفسر الآن"
+  enquireShort: "استفسر"
+  bookTour: "احجز جولة"
+  whatsapp: "تواصل عبر واتساب"
+  readMore: "اقرأ المزيد"
+  menu: "القائمة"
+  close: "إغلاق"
+  skip: "انتقل إلى المحتوى الرئيسي"
+footer:
+  tagline: "مدرسة عالمية في الرياض، المملكة العربية السعودية."
+  explore: "تصفّح"
+  contact: "اتصل بنا"
+  group: "إحدى مدارس"
+  cognia: ""
+  licence: "رقم ترخيص الوزارة"
+  unified: "الرقم الموحد"
+  rights: "جميع الحقوق محفوظة."
+placeholders:
+  photo: "الصورة قريبًا"
+form:
+  type: "أرغب في"
+  typeEnquire: "تقديم استفسار"
+  typeTour: "حجز جولة في المدرسة"
+  name: "اسم ولي الأمر"
+  phone: "رقم الجوال"
+  email: "البريد الإلكتروني"
+  section: "القسم"
+  sectionGirls: "بنات"
+  sectionBoys: "بنين"
+  grade: "الصف المطلوب"
+  gradeChoose: "اختر الصف"
+  year: "العام الدراسي"
+  contactBy: "طريقة التواصل المفضلة"
+  message: "رسالتك (اختياري)"
+  messageHint: "يُرجى عدم كتابة اسم الطفل أو بياناته الشخصية."
+  consent: "أوافق على أن تستخدم مدارس رواد بلوم العالمية البيانات أعلاه للرد على استفساري، كما هو موضّح في"
+  consentLink: "سياسة الخصوصية"
+  consentNote: "وفقًا لنظام حماية البيانات الشخصية في المملكة العربية السعودية."
+  required: "مطلوب"
+  submit: "إرسال الاستفسار"
+  sending: "جارٍ الإرسال…"
+  successTitle: "شكرًا لكم"
+  success: "تم إرسال استفساركم، وسيتواصل معكم فريق القبول قريبًا."
+  error: "عذرًا، حدث خطأ. يُرجى المحاولة مرة أخرى أو التواصل معنا عبر واتساب أو البريد الإلكتروني."
+  fallbackTitle: "خطوة أخيرة: اختر طريقة الإرسال"
+  fallbackText: "رسالتكم جاهزة. اختاروا واتساب أو البريد الإلكتروني لإرسالها إلى فريق القبول."
+  sendWhatsapp: "الإرسال عبر واتساب"
+  sendEmail: "الإرسال بالبريد الإلكتروني"
+  fallbackMissing: "[TO CONFIRM: WhatsApp number and admissions email in content/settings.yaml]"

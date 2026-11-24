@@ -4,6 +4,8 @@
     "_readme": "The crest in brand/logo.png is used automatically. The words below are shown next to it in the header and footer (and on their own if no logo file exists).",
     "wordmarkTop": "Rowad Bloom",
     "wordmarkBottom": "International Schools",
+    "wordmarkTopAr": "رواد بلوم",
+    "wordmarkBottomAr": "المدارس العالمية",
     "monogram": "B",
     "showWordsNextToLogo": true
   },

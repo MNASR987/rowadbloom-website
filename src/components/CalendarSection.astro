@@ -1,7 +1,7 @@
 ---
 // Academic calendar key dates (content/en/calendar.yaml), shown on the Parents page.
 import Icon from './Icon.astro';
-import { getPage, type Lang } from '../lib/content';
+import { getPage, type Lang, tr } from '../lib/content';
 interface Props { lang?: Lang }
 const { lang = 'en' } = Astro.props;
 const cal = getPage('calendar', lang);
@@ -9,7 +9,7 @@ const cal = getPage('calendar', lang);
 <section class="section" id="calendar" aria-labelledby="cal-h">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Key dates</p>
+      <p class="eyebrow">{tr('Key dates', lang)}</p>
       <h2 id="cal-h">{cal.title}</h2>
       <p>{cal.intro}</p>
     </div>

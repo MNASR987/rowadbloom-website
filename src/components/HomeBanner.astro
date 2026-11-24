@@ -10,7 +10,7 @@ interface Props { hero: any; buttons: any; lang: Lang }
 const { hero, buttons, lang } = Astro.props;
 ---
 <section class="banner" aria-labelledby="welcome-title">
-  <h1 id="welcome-title" class="visually-hidden">Rowad Bloom International Schools, Riyadh</h1>
+  <h1 id="welcome-title" class="visually-hidden">{hero.bannerAlt}</h1>
   <div class="frame">
     <Picture
       src={heroBanner!}

@@ -112,3 +112,9 @@ mark.tbc { background: var(--c-placeholder); color: #5B4300; padding: .05em .35e
 /* Reveal on scroll (progressive enhancement) */
 .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
 .js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* Arabic (right-to-left) pages: Arabic letters join, so spacing between letters is switched off,
+   and headings get more height because Arabic script is taller. */
+[dir='rtl'] * { letter-spacing: 0 !important; }
+[dir='rtl'] h1, [dir='rtl'] h2, [dir='rtl'] h3, [dir='rtl'] h4 { line-height: 1.45; }
+[dir='rtl'] .eyebrow { font-size: .95rem; }

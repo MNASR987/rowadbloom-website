@@ -72,7 +72,7 @@ const still = photo?.src ?? (hasVideo ? asset('media/hero-poster.jpg') : undefin
   video.media.ready { opacity: 1; }
   .shade { position: absolute; inset: 0; z-index: -1; }
   .has-media .shade { background: linear-gradient(90deg, rgba(6,24,51,.93) 0%, rgba(6,24,51,.74) 50%, rgba(6,24,51,.22) 100%); }
-  [dir='rtl'] .has-media .shade { background: linear-gradient(270deg, rgba(6,24,51,.93) 0%, rgba(6,24,51,.74) 50%, rgba(6,24,51,.22) 100%); }
+  :global([dir='rtl']) .has-media .shade { background: linear-gradient(270deg, rgba(6,24,51,.93) 0%, rgba(6,24,51,.78) 50%, rgba(6,24,51,.3) 100%); }
   .hero:not(.has-media)::before { content: ''; position: absolute; inset-inline-end: -10vw; inset-block-start: 10%; inline-size: 55vw; max-inline-size: 760px; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(57,160,220,.35); box-shadow: 0 0 0 40px rgba(57,160,220,.04), 0 0 0 90px rgba(57,160,220,.03); z-index: -1; }
   .inner { position: relative; }
   h1 { color: #fff; max-width: 15ch; font-size: clamp(2.6rem, 6.5vw, 4.75rem); }
