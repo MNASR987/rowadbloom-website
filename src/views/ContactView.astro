@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Rich from '../components/Rich.astro';
 import Icon from '../components/Icon.astro';
 import Pattern from '../components/Pattern.astro';
+import SocialLinks from '../components/SocialLinks.astro';
 import { getPage, localSettings, type Lang, tr } from '../lib/content';
 import { phone, email, telLink, mailLink, whatsappLink, whatsappNumber, whatsappNumber2, whatsappLink2, localNumber, socialLinks } from '../lib/contact';
 import { href } from '../lib/paths';
@@ -48,7 +49,7 @@ const rows = [
         {socialLinks.length > 0 && (
           <div class="follow">
             <h2>{tr('Follow us', lang)}</h2>
-            <ul class="social" role="list">{socialLinks.map((s) => <li><a class="btn btn--outline btn--sm" href={s.url} rel="noopener" target="_blank">{s.name}</a></li>)}</ul>
+            <SocialLinks variant="compact" />
           </div>
         )}
       </div>

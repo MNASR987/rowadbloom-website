@@ -1,0 +1,93 @@
+---
+// Social media buttons with each platform's icon (icons from the open
+// "simple-icons" library). Links come from content/settings.yaml → links.
+//   variant="band"    → full-width "Follow us" section (shown above the footer)
+//   variant="compact" → a row of icon buttons (Contact page)
+import { siFacebook, siInstagram, siTiktok, siSnapchat, siYoutube, siX } from 'simple-icons';
+import { socialLinks } from '../lib/contact';
+import { tr, langOf } from '../lib/content';
+interface Props { variant?: 'band' | 'compact' }
+const { variant = 'band' } = Astro.props;
+const lang = langOf(Astro.url);
+const icons: Record<string, { path: string; bg: string; fg: string }> = {
+  facebook: { path: siFacebook.path, bg: '#0866FF', fg: '#fff' },
+  instagram: { path: siInstagram.path, bg: 'linear-gradient(45deg,#F58529 0%,#DD2A7B 45%,#8134AF 75%,#515BD4 100%)', fg: '#fff' },
+  tiktok: { path: siTiktok.path, bg: '#000', fg: '#fff' },
+  snapchat: { path: siSnapchat.path, bg: '#FFFC00', fg: '#000' },
+  youtube: { path: siYoutube.path, bg: '#FF0000', fg: '#fff' },
+  x: { path: siX.path, bg: '#000', fg: '#fff' },
+};
+const handle = (url: string) => {
+  const at = url.match(/@[\w.]+/);
+  if (at) return at[0];
+  const ig = url.match(/instagram\.com\/([\w.]+)/);
+  return ig ? `@${ig[1]}` : 'Rowad Bloom';
+};
+const items = socialLinks.filter((s) => icons[s.key]).map((s) => ({ ...s, ...icons[s.key], handle: handle(s.url) }));
+const newTab = tr('(opens in a new tab)', lang);
+---
+{items.length > 0 && variant === 'band' && (
+  <section class="social-band" aria-labelledby="follow-h">
+    <div class="container band">
+      <div class="intro">
+        <p class="eyebrow">{tr('Social media', lang)}</p>
+        <h2 id="follow-h">{tr('Follow Rowad Bloom', lang)}</h2>
+        <p>{tr('See our students’ achievements, school events and everyday life. Tap an account to visit and follow us.', lang)}</p>
+      </div>
+      <ul class="cards" role="list">
+        {items.map((s) => (
+          <li>
+            <a class="card-link" href={s.url} target="_blank" rel="noopener" aria-label={`${s.name} ${s.handle} ${newTab}`}>
+              <span class="ico" style={`background:${s.bg};color:${s.fg}`}><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false"><path fill="currentColor" d={s.path} /></svg></span>
+              <span class="txt"><strong>{s.name}</strong><small dir="ltr">{s.handle}</small></span>
+              <span class="go">{tr('Visit', lang)} <span class="arr" aria-hidden="true">→</span></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+{items.length > 0 && variant === 'compact' && (
+  <ul class="compact" role="list">
+    {items.map((s) => (
+      <li>
+        <a href={s.url} target="_blank" rel="noopener" aria-label={`${s.name} ${newTab}`}>
+          <span class="ico sm" style={`background:${s.bg};color:${s.fg}`}><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d={s.path} /></svg></span>
+          {s.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}
+<style>
+  .social-band { background: linear-gradient(180deg, var(--c-bg-alt, #F3F6FA), #E8EEF6); border-block-start: 1px solid var(--c-border); padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .band { display: grid; gap: 2rem; align-items: center; }
+  .intro h2 { margin-block-end: .75rem; }
+  .intro p:not(.eyebrow) { color: var(--c-text-muted); font-size: 1.05rem; max-width: 40rem; }
+  .cards { list-style: none; padding: 0; display: grid; gap: .85rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+  .card-link { display: flex; align-items: center; gap: .85rem; padding: .9rem 1rem; background: #fff; border: 1px solid var(--c-border); border-radius: 14px; text-decoration: none; color: var(--c-primary); box-shadow: 0 10px 24px -18px rgba(6,24,51,.45); transition: transform .2s, box-shadow .2s, border-color .2s; min-block-size: 64px; }
+  .card-link:hover, .card-link:focus-visible { transform: translateY(-3px); box-shadow: 0 18px 32px -18px rgba(6,24,51,.5); border-color: var(--c-accent); }
+  .ico { flex-shrink: 0; inline-size: 46px; block-size: 46px; border-radius: 50%; display: grid; place-items: center; }
+  .ico.sm { inline-size: 36px; block-size: 36px; }
+  .txt { display: grid; gap: .1rem; min-inline-size: 0; flex: 1; }
+  .txt strong { font-weight: 650; font-size: 1.02rem; }
+  .txt small { color: var(--c-text-muted); font-size: .82rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: start; }
+  .go { font-size: .85rem; font-weight: 600; color: var(--c-accent-text); white-space: nowrap; }
+  .card-link:hover .arr { display: inline-block; transform: translateX(3px); }
+  :global([dir='rtl']) .arr { display: inline-block; transform: scaleX(-1); }
+  @media (min-width: 760px) {
+    .cards { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1rem; }
+    .card-link { flex-direction: column; text-align: center; padding: 1.5rem 1rem 1.25rem; gap: .7rem; }
+    .ico { inline-size: 58px; block-size: 58px; }
+    .ico svg { inline-size: 30px; block-size: 30px; }
+    .txt { justify-items: center; }
+    .txt small { text-align: center; }
+    .go { margin-block-start: .25rem; padding: .45rem 1.1rem; border-radius: 999px; background: var(--c-primary); color: #fff; }
+    .card-link:hover .go { background: var(--c-accent); }
+  }
+  .compact { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+  .compact a { display: inline-flex; align-items: center; gap: .55rem; padding: .35rem 1rem .35rem .35rem; border: 1px solid var(--c-border); border-radius: 999px; background: #fff; color: var(--c-primary); font-weight: 600; text-decoration: none; transition: border-color .2s, transform .2s; }
+  :global([dir='rtl']) .compact a { padding: .35rem .35rem .35rem 1rem; }
+  .compact a:hover, .compact a:focus-visible { border-color: var(--c-accent); transform: translateY(-2px); }
+</style>

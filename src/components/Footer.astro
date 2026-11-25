@@ -2,6 +2,7 @@
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import Rich from './Rich.astro';
+import SocialLinks from './SocialLinks.astro';
 import { getPage, localSettings, tr, type Lang } from '../lib/content';
 import { href } from '../lib/paths';
 import { phone, email, telLink, mailLink, whatsappLink, whatsappNumber, whatsappNumber2, whatsappLink2, localNumber, socialLinks } from '../lib/contact';
@@ -12,6 +13,7 @@ const settings = localSettings(lang);
 const year = new Date().getFullYear();
 const c = settings.contact;
 ---
+<SocialLinks />
 <footer class="site-footer">
   <div class="container top">
     <div class="about">
@@ -40,12 +42,7 @@ const c = settings.contact;
         <li><Icon name="mail" size={18} />{email ? <a href={mailLink}>{email}</a> : <Rich text="[TO CONFIRM: Email]" />}</li>
         <li><Icon name="whatsapp" size={18} />{whatsappLink() ? <span>{tr('WhatsApp', lang)}: <a href={whatsappLink()} rel="noopener" dir="ltr">{localNumber(whatsappNumber)}</a>{whatsappLink2 && <> · <a href={whatsappLink2} rel="noopener" dir="ltr">{localNumber(whatsappNumber2)}</a></>}</span> : <Rich text="[TO CONFIRM: WhatsApp number]" />}</li>
       </ul>
-      {socialLinks.length > 0 && (
-        <>
-          <h2 class="f-head follow">{tr('Follow us', lang)}</h2>
-          <ul class="social">{socialLinks.map((s) => <li><a href={s.url} rel="noopener" target="_blank">{s.name}</a></li>)}</ul>
-        </>
-      )}
+
     </div>
   </div>
   <div class="bottom">
