@@ -4,15 +4,13 @@ import Icon from './Icon.astro';
 import Rich from './Rich.astro';
 import { getPage, localSettings, tr, type Lang } from '../lib/content';
 import { href } from '../lib/paths';
-import { phone, email, telLink, mailLink, whatsappLink } from '../lib/contact';
+import { phone, email, telLink, mailLink, whatsappLink, whatsappNumber, whatsappNumber2, whatsappLink2, localNumber, socialLinks } from '../lib/contact';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const ui = getPage('ui', lang);
 const settings = localSettings(lang);
 const year = new Date().getFullYear();
 const c = settings.contact;
-const social = Object.entries(settings.links ?? {}).filter(([k, v]) => ['instagram', 'x', 'linkedin', 'youtube'].includes(k) && v);
-const socialNames: Record<string, string> = { instagram: 'Instagram', x: 'X', linkedin: 'LinkedIn', youtube: 'YouTube' };
 ---
 <footer class="site-footer">
   <div class="container top">
@@ -40,10 +38,13 @@ const socialNames: Record<string, string> = { instagram: 'Instagram', x: 'X', li
         <li><Icon name="pin" size={18} /><Rich text={c.address || '[TO CONFIRM: School address]'} /></li>
         <li><Icon name="phone" size={18} />{phone ? <a href={telLink} dir="ltr">{phone}</a> : <Rich text="[TO CONFIRM: Phone]" />}</li>
         <li><Icon name="mail" size={18} />{email ? <a href={mailLink}>{email}</a> : <Rich text="[TO CONFIRM: Email]" />}</li>
-        <li><Icon name="whatsapp" size={18} />{whatsappLink() ? <a href={whatsappLink()} rel="noopener">{tr('WhatsApp', lang)}</a> : <Rich text="[TO CONFIRM: WhatsApp number]" />}</li>
+        <li><Icon name="whatsapp" size={18} />{whatsappLink() ? <span>{tr('WhatsApp', lang)}: <a href={whatsappLink()} rel="noopener" dir="ltr">{localNumber(whatsappNumber)}</a>{whatsappLink2 && <> · <a href={whatsappLink2} rel="noopener" dir="ltr">{localNumber(whatsappNumber2)}</a></>}</span> : <Rich text="[TO CONFIRM: WhatsApp number]" />}</li>
       </ul>
-      {social.length > 0 && (
-        <ul class="social">{social.map(([k, v]) => <li><a href={v as string} rel="noopener">{socialNames[k]}</a></li>)}</ul>
+      {socialLinks.length > 0 && (
+        <>
+          <h2 class="f-head follow">{tr('Follow us', lang)}</h2>
+          <ul class="social">{socialLinks.map((s) => <li><a href={s.url} rel="noopener" target="_blank">{s.name}</a></li>)}</ul>
+        </>
       )}
     </div>
   </div>
@@ -76,7 +77,10 @@ const socialNames: Record<string, string> = { instagram: 'Instagram', x: 'X', li
   .contact { display: grid; gap: .85rem; }
   .contact li { display: flex; gap: .75rem; align-items: flex-start; }
   .contact :global(svg) { flex-shrink: 0; margin-block-start: .3rem; color: var(--c-accent); }
-  .social { display: flex; flex-wrap: wrap; gap: 1rem; margin-block-start: 1.5rem; }
+  .follow { margin-block: 2rem 1rem; }
+  .social { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .social a:not(.btn) { display: inline-block; padding: .4rem .85rem; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; font-size: .9rem; }
+  .social a:not(.btn):hover { border-color: var(--c-accent); text-decoration: none; }
   .bottom { border-block-start: 1px solid rgba(255,255,255,.1); font-size: .875rem; }
   .bottom-inner { display: grid; gap: .5rem; padding-block: 1.5rem 6rem; }
   @media (min-width: 860px) { .bottom-inner { padding-block-end: 1.5rem; } }

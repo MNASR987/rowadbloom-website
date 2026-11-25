@@ -17,7 +17,14 @@ portal:
 # School uniform: add the wording below to show the uniform section.
 uniform:
   title: "School Uniform"
-  text: "[TO CONFIRM: School uniform details]"
+  text: "Our uniform is lime green and navy, with the Rowad Bloom crest. The basic uniform is included in the tuition fees. For sizes and extra pieces, please contact the school office."
+  # Photos are in brand/uniform — one caption per photo, in file-name order
+  photos:
+    - "The Rowad Bloom uniform"
+    - "Long-sleeve polo and navy skirt"
+    - "Short-sleeve polo and navy shorts"
+    - "Winter hoodie and navy trousers"
+    - "Tracksuit with green T-shirt"
 
 partnership:
   title: "Working together"

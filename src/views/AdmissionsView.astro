@@ -13,9 +13,10 @@ const { lang } = Astro.props;
 const p = getPage('admissions', lang);
 const ui = getPage('ui', lang);
 const hasFees = Boolean(p.fees && p.fees.rows && p.fees.rows.length);
+const hasBefore = hasFees && p.fees.rows.some((r: any) => r.before);
 const subnav = [
   ['#who', p.whoWeAdmit.title], ['#process', p.process.title], ['#documents', p.documents.title],
-  ...(hasFees ? [['#fees', 'Fees']] : []), ['#offers', p.offers.title], ['#faq', 'FAQ'], ['#enquire', ui.buttons.bookTour],
+  ...(hasFees ? [['#fees', tr('Fees', lang)]] : []), ['#offers', p.offers.title], ['#faq', 'FAQ'], ['#enquire', ui.buttons.bookTour],
 ];
 ---
 <BaseLayout title={p.seo.title} description={p.seo.description} lang={lang}>
@@ -68,10 +69,10 @@ const subnav = [
       <div class="fees-wrap reveal">
         <table class="fees">
           <caption class="visually-hidden">{p.fees.title}. {p.fees.intro}</caption>
-          <thead><tr><th scope="col">{p.fees.columnStage}</th><th scope="col">{p.fees.columnFee}</th></tr></thead>
+          <thead><tr><th scope="col">{p.fees.columnStage}</th>{hasBefore && <th scope="col">{p.fees.columnBefore}</th>}<th scope="col">{p.fees.columnFee}</th></tr></thead>
           <tbody>
             {p.fees.rows.map((r: any) => (
-              <tr><th scope="row">{r.stage}</th><td><span dir="ltr">{r.fee}</span></td></tr>
+              <tr><th scope="row">{r.stage}</th>{hasBefore && <td class="before"><s dir="ltr">{r.before}</s></td>}<td><span dir="ltr">{r.fee}</span></td></tr>
             ))}
           </tbody>
         </table>
@@ -130,7 +131,10 @@ const subnav = [
   .fees thead th { background: var(--c-primary); color: #fff; font-weight: 600; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; }
   .fees tbody th { font-weight: 500; }
   .fees td { text-align: end; font: 650 1.1rem/1 var(--font-body); color: var(--c-primary); font-variant-numeric: tabular-nums; }
-  .fees thead th:last-child { text-align: end; }
+  .fees thead th:not(:first-child) { text-align: end; }
+  @media (max-width: 560px) { .fees th, .fees td { padding: .9rem .75rem; } .fees thead th { font-size: .72rem; letter-spacing: .04em; } .fees tbody th { white-space: nowrap; } }
+  .fees td.before { font-weight: 500; color: var(--c-text-muted); font-size: 1rem; }
+  .fees td.before s { text-decoration-color: #C0392B; text-decoration-thickness: 2px; }
   .fees tbody tr:last-child > * { border-block-end: 0; }
   .fees tbody tr:nth-child(even) { background: #FCFBF7; }
   .fee-notes { margin-block-start: 1.5rem; padding-inline-start: 1.2rem; color: var(--c-text-muted); display: grid; gap: .35rem; font-size: .97rem; }

@@ -41,11 +41,19 @@ documents:
 #     - { stage: "KG1", fee: "00,000" }
 fees:
   title: "Tuition Fees 2026–2027"
-  intro: "Annual tuition fees in Saudi riyals (SAR), excluding VAT."
+  intro: "Annual tuition fees in Saudi riyals (SAR), for boys and girls from KG1 to Grade 12."
   columnStage: "Grade"
-  columnFee: "Annual tuition (SAR)"
-  rows: []
-  notes: []
+  columnBefore: "Before discount"
+  columnFee: "After discount (SAR)"
+  rows:
+    - { stage: "KG1 – KG3", before: "12,000", fee: "11,000" }
+    - { stage: "Grade 1 – Grade 3", before: "13,000", fee: "12,000" }
+    - { stage: "Grade 4 – Grade 6", before: "14,000", fee: "13,000" }
+    - { stage: "Grade 7 – Grade 9", before: "14,500", fee: "13,500" }
+    - { stage: "Grade 10 – Grade 12", before: "15,500", fee: "14,500" }
+  notes:
+    - "**Early registration offer:** an extra SAR 500 off for the first 100 students."
+    - "The fees include the learning booklets and the basic school uniform."
 
 offers:
   title: "Offers & Announcements"
@@ -65,7 +73,7 @@ faq:
     - q: "Do you teach Arabic and Islamic Studies?"
       a: "Yes. Arabic, Holy Quran and Islamic Studies, and Social Studies are taught as identity subjects."
     - q: "What are the tuition fees?"
-      a: "Please contact our admissions team for the current tuition fees and payment schedule."
+      a: "You will find the 2026–2027 tuition fees in the table on this page. For the payment schedule, please contact our admissions team."
     - q: "Who runs the school?"
       a: "Rowad Bloom International Schools is one of the schools of El-Shrouk Pioneer Academy."
     - q: "Do you provide school transport?"

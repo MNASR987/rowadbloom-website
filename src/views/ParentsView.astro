@@ -8,10 +8,16 @@ import CalendarSection from '../components/CalendarSection.astro';
 import { getPage, settings, type Lang, tr } from '../lib/content';
 import { asset } from '../lib/paths';
 import { rich, paragraphs, real } from '../lib/text';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+// Uniform photos: every image in brand/uniform, in file-name order.
+const uniformFiles = import.meta.glob<{ default: ImageMetadata }>('/brand/uniform/*.{jpg,jpeg,png,webp}', { eager: true });
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const p = getPage('parents', lang);
 const portal = settings.links.parentPortal;
+const uniformPhotos = Object.keys(uniformFiles).sort().map((k, i) => ({ img: uniformFiles[k].default, caption: (p.uniform?.photos ?? [])[i] ?? p.uniform?.title ?? '' }));
+const [uniformMain, ...uniformItems] = uniformPhotos;
 ---
 <BaseLayout title={p.seo.title} description={p.seo.description} lang={lang}>
   <PageHero title={p.hero.title} text={p.hero.text}>
@@ -26,16 +32,36 @@ const portal = settings.links.parentPortal;
 
   {p.uniform && real(p.uniform.text) && (
   <section class="section section--alt" id="uniform" aria-labelledby="uni-h">
-    <div class="container split">
-      <div class="reveal">
-        <p class="eyebrow">{tr('Every day', lang)}</p>
-        <h2 id="uni-h">{p.uniform.title}</h2>
-        <div class="body">{paragraphs(p.uniform.text).map((t) => <p set:html={rich(t)} />)}</div>
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <p class="eyebrow">{tr('Every day', lang)}</p>
+          <h2 id="uni-h">{p.uniform.title}</h2>
+          <div class="body">{paragraphs(p.uniform.text).map((t) => <p set:html={rich(t)} />)}</div>
+        </div>
+        {uniformMain ? (
+          <figure class="uni-main reveal">
+            <Image src={uniformMain.img} alt={uniformMain.caption} widths={[480, 800, 1200]} sizes="(min-width: 960px) 50vw, 92vw" />
+          </figure>
+        ) : (
+          <div class="swatches reveal" aria-hidden="true">
+            <div class="shirt girls"><span class="crest">B</span><p>{tr('Girls', lang)}</p><small>{tr('School uniform', lang)}</small></div>
+            <div class="shirt boys"><span class="crest">B</span><p>{tr('Boys', lang)}</p><small>{tr('School uniform', lang)}</small></div>
+          </div>
+        )}
       </div>
-      <div class="swatches reveal" aria-hidden="true">
-        <div class="shirt girls"><span class="crest">B</span><p>{tr('Girls', lang)}</p><small>{tr('School uniform', lang)}</small></div>
-        <div class="shirt boys"><span class="crest">B</span><p>{tr('Boys', lang)}</p><small>{tr('School uniform', lang)}</small></div>
-      </div>
+      {uniformItems.length > 0 && (
+        <ul class="uni-items" role="list">
+          {uniformItems.map((u) => (
+            <li class="reveal">
+              <figure>
+                <Image src={u.img} alt={u.caption} widths={[300, 500, 800]} sizes="(min-width: 960px) 23vw, (min-width: 560px) 45vw, 92vw" />
+                <figcaption>{u.caption}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   </section>
   )}
@@ -74,6 +100,13 @@ const portal = settings.links.parentPortal;
 <style>
   .body { margin-block-start: 1.25rem; font-size: 1.08rem; }
   .swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .uni-main { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: 0 30px 60px -35px rgba(6,24,51,.55); }
+  .uni-main :global(img) { inline-size: 100%; block-size: auto; display: block; }
+  .uni-items { list-style: none; padding: 0; margin-block-start: 3rem; display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  @media (max-width: 559px) { .uni-items { grid-template-columns: 1fr 1fr; gap: .75rem; } .uni-items figcaption { font-size: .85rem; padding: .6rem .5rem .75rem; } }
+  .uni-items figure { margin: 0; background: #fff; border: 1px solid var(--c-border); border-radius: var(--radius); overflow: hidden; }
+  .uni-items :global(img) { inline-size: 100%; block-size: auto; display: block; }
+  .uni-items figcaption { padding: .85rem 1rem 1rem; font-weight: 600; color: var(--c-primary); font-size: .97rem; text-align: center; }
   .shirt { border-radius: var(--radius); padding: 2.5rem 1.5rem 1.75rem; text-align: center; display: grid; justify-items: center; gap: .35rem; border: 1px solid var(--c-border); }
   .shirt.girls { background: #fff; color: var(--c-primary); }
   .shirt.boys { background: var(--c-primary); color: #fff; }

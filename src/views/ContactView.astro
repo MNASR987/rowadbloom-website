@@ -5,7 +5,7 @@ import Rich from '../components/Rich.astro';
 import Icon from '../components/Icon.astro';
 import Pattern from '../components/Pattern.astro';
 import { getPage, localSettings, type Lang, tr } from '../lib/content';
-import { phone, email, telLink, mailLink, whatsappLink } from '../lib/contact';
+import { phone, email, telLink, mailLink, whatsappLink, whatsappNumber, whatsappNumber2, whatsappLink2, localNumber, socialLinks } from '../lib/contact';
 import { href } from '../lib/paths';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -17,7 +17,8 @@ const L = p.labels;
 const rows = [
   { id: 'phone', icon: 'phone', label: L.phone, link: telLink, value: phone, ltr: true, missing: '[TO CONFIRM: Phone number]' },
   { id: 'email', icon: 'mail', label: L.email, link: mailLink, value: email, missing: '[TO CONFIRM: Email address]' },
-  { id: 'whatsapp', icon: 'whatsapp', label: L.whatsapp, link: whatsappLink(), value: whatsappLink() ? ui.buttons.whatsapp : '', missing: '[TO CONFIRM: WhatsApp number]' },
+  { id: 'whatsapp', icon: 'whatsapp', label: L.whatsapp, link: whatsappLink(), value: whatsappLink() ? localNumber(whatsappNumber) : '', ltr: true, missing: '[TO CONFIRM: WhatsApp number]' },
+  ...(whatsappLink2 ? [{ id: 'whatsapp-2', icon: 'whatsapp', label: `${L.whatsapp} 2`, link: whatsappLink2, value: localNumber(whatsappNumber2), ltr: true, missing: '' }] : []),
   { id: 'address', icon: 'pin', label: L.address, link: c.mapLink, value: c.address + (c.shortAddress ? ` (${tr('National Address', lang)}: ${c.shortAddress})` : ''), missing: '[TO CONFIRM: School address]' },
   { id: 'hours', icon: 'clock', label: L.hours, link: '', value: c.workingHours, missing: '[TO CONFIRM: Working hours]' },
 ];
@@ -44,6 +45,12 @@ const rows = [
           <div class="map-ph"><Pattern opacity={0.15} /><span><Icon name="pin" size={36} /><Rich text="[TO CONFIRM: Google Maps embed link]" /></span></div>
         )}
         {c.mapLink && <a class="link-arrow open" href={c.mapLink} rel="noopener">{L.openMap}</a>}
+        {socialLinks.length > 0 && (
+          <div class="follow">
+            <h2>{tr('Follow us', lang)}</h2>
+            <ul class="social" role="list">{socialLinks.map((s) => <li><a class="btn btn--outline btn--sm" href={s.url} rel="noopener" target="_blank">{s.name}</a></li>)}</ul>
+          </div>
+        )}
       </div>
     </div>
   </section>
@@ -72,6 +79,9 @@ const rows = [
   .map-ph span { position: relative; display: grid; gap: 1rem; justify-items: center; }
   .map-ph :global(svg) { color: var(--c-accent); }
   .open { justify-self: start; align-self: start; }
+  .follow { margin-block-start: 1rem; }
+  .follow h2 { font: 600 .8rem/1.4 var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--c-accent-text); margin-block-end: .75rem; }
+  .social { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
   .center { text-align: center; }
   .lead { font-size: 1.12rem; color: var(--c-text-muted); margin-block: 1rem 2rem; }
   .centered { justify-content: center; }

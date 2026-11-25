@@ -17,20 +17,25 @@ contact:
   phone: "+966 58 154 5014"
   email: "info@rowadbloum.edu.sa"
   whatsapp: "966581545014"   # international format, digits only
+  whatsapp2: "966541834359"  # second WhatsApp number (optional)
   address: "4118 An Nasr Road, Al Aziziyah Dist., Riyadh 14511, Saudi Arabia"
   shortAddress: ""   # Saudi National Address short code
   workingHours: ""
   mapEmbedUrl: "https://maps.google.com/maps?q=4118%20An%20Nasr%20Road%2C%20Al%20Aziziyah%2C%20Riyadh%2014511&z=16&output=embed"   # Google Maps → Share → Embed a map → copy the link inside src="..."
-  mapLink: "https://www.google.com/maps/search/?api=1&query=4118%20An%20Nasr%20Road%2C%20Al%20Aziziyah%2C%20Riyadh%2014511"   # Google Maps → Share → Copy link
+  mapLink: "https://maps.app.goo.gl/KCv8njjEngA93Xp26"   # Google Maps → Share → Copy link
 
 links:
   parentPortal: ""     # link to the parent portal
   careersEmail: "info@rowadbloum.edu.sa"     # where CVs are sent
   virtualTourEmbedUrl: ""   # YouTube/Vimeo embed link or 360° tour link
-  instagram: ""
+  # Social media — shown in the footer and on the Contact page
+  facebook: "https://www.facebook.com/share/1Pc3jANTG3/"
+  instagram: "https://www.instagram.com/rowad.bloom"
+  tiktok: "https://www.tiktok.com/@rowad.bloom.school"
+  snapchat: "https://snapchat.com/t/Gpp80MgG"
+  youtube: "https://www.youtube.com/@RBISEducation"
   x: ""
   linkedin: ""
-  youtube: ""
 
 forms:
   # Option A (simplest with Microsoft 365): paste the Microsoft Forms
