@@ -56,7 +56,7 @@ leadership:
   # "brand" folder and write its name, e.g. photo: "principal.jpg"
   people:
     - { name: "Ms. Bushra Al-Shahrani", role: "Principal", photo: "" }
-    - { name: "Ms. Mona Fawzi", role: "Academic Manager", photo: "" }
+    - { name: "Ms. Mona El-Kelani", role: "Academic Manager", photo: "" }
 
 partnerships:
   title: "Our Group & Examination Boards"
