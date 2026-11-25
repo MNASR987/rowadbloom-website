@@ -8,7 +8,7 @@ lastUpdated: "October 2026"
 
 Rowad Bloom International Schools, Riyadh, Saudi Arabia ("the School", "we") is the controller of the personal data collected through this website. Ministry licence no. 520-21585, unified no. 7036891005.
 
-Contact for privacy matters: the School Administration, email **admin@rowadbloum.edu.sa**, phone **+966 58 154 5014**. Address: 4118 An Nasr Road, Al Aziziyah Dist., Riyadh 14511.
+Contact for privacy matters: the School Administration, email **info@rowadbloum.edu.sa**, phone **+966 58 154 5014**. Address: 4118 An Nasr Road, Al Aziziyah Dist., Riyadh 14511.
 
 ## 2. The personal data we collect
 

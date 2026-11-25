@@ -15,7 +15,7 @@ licence:
 
 contact:
   phone: "+966 58 154 5014"
-  email: "admin@rowadbloum.edu.sa"
+  email: "info@rowadbloum.edu.sa"
   whatsapp: "966581545014"   # international format, digits only
   address: "4118 An Nasr Road, Al Aziziyah Dist., Riyadh 14511, Saudi Arabia"
   shortAddress: ""   # Saudi National Address short code
@@ -25,7 +25,7 @@ contact:
 
 links:
   parentPortal: ""     # link to the parent portal
-  careersEmail: "admin@rowadbloum.edu.sa"     # where CVs are sent
+  careersEmail: "info@rowadbloum.edu.sa"     # where CVs are sent
   virtualTourEmbedUrl: ""   # YouTube/Vimeo embed link or 360° tour link
   instagram: ""
   x: ""
