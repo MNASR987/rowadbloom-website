@@ -1,0 +1,6 @@
+# Security contact for Rowad Bloom International Schools's website.
+# To report a security issue, please email us. Thank you for helping keep our community safe.
+Contact: mailto:admin@rowadbloum.edu.sa
+Expires: 2027-11-30T00:00:00.000Z
+Preferred-Languages: en, ar
+Canonical: https://www.rowadbloum.edu.sa/.well-known/security.txt
